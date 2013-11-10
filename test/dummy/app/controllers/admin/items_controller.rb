@@ -4,12 +4,13 @@ class Admin::ItemsController < ApplicationController
   declare_resource :items,
     :path => :admin_items_path,
     :ordering => {
-      :name => "items.name"
+      :name => "items.name",
+      :price => "items.price"
     },
-    :default_order => :name,
-    :default_direction => :asc
+    :default_order => :price,
+    :default_direction => :desc
 
   def index
-    head :ok
+    @items = Item
   end
 end

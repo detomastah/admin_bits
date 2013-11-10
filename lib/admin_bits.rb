@@ -1,4 +1,7 @@
 module AdminBits
+  class Engine < ::Rails::Engine
+  end
+
   autoload :Helpers,        'admin_bits/helpers'
   autoload :AdminResource,  'admin_bits/admin_resource'
 
@@ -18,12 +21,17 @@ module AdminBits
         AdminResource.new(
           raw_resource,
           options,
+          action_name,
           params
         )
       end
 
       define_method :raw_resource do
         instance_variable_get("@#{name}")
+      end
+
+      define_method :admin_filter do |name|
+        admin_resource.filter_params[name]
       end
 
       define_method name do

@@ -1,11 +1,12 @@
 module AdminBits
   class AdminResource
-    attr_reader :options, :resource, :request_params
+    attr_reader :options, :resource, :request_params, :action_name
 
-    def initialize(resource, options, request_params = {})
+    def initialize(resource, options, action_name, request_params = {})
       @resource       = resource
       @options        = options
       @request_params = request_params
+      @action_name    = action_name
 
       raise ":path must be provided" unless @options[:path]
 
@@ -33,13 +34,29 @@ module AdminBits
       options[:default_direction] == :asc ? "true" : "false"
     end
 
+    def filter_params
+      (request_params[:filters] || {}).with_indifferent_access
+    end
+
     def output
       resource.order(get_order).page(get_page)
     end
 
+    def url_symbol
+      if options[:path].is_a?(Symbol)
+        options[:path]
+      else
+        instance_eval &options[:path]
+      end
+    end
+
+    def original_url
+      Rails.application.routes.url_helpers.send(url_symbol)
+    end
+
     def url(params = {})
       Rails.application.routes.url_helpers.send(
-        options[:path],
+        url_symbol,
         request_params.merge(params)
       )
     end
@@ -48,13 +65,17 @@ module AdminBits
       request_params[:page]
     end
 
+    def routes
+      Rails.application.routes.url_helpers
+    end
+
     def get_order
       order = request_params[:order]
 
       if order.blank?
         nil
       else
-        convert_mapping(options[:ordering][order.to_sym])
+        convert_mapping(order.to_sym)
       end
     end
 
@@ -62,7 +83,8 @@ module AdminBits
       request_params[:asc] != "true" ? "DESC" : "ASC"
     end
 
-    def convert_mapping(mapping)
+    def convert_mapping(order)
+      mapping = options[:ordering][order]
       # Check if mapping was provided
       raise "No order mapping specified for '#{order}'" if mapping.blank?
       # Convert to array in order to simplify processing
