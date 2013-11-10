@@ -1,0 +1,1 @@
+var search_data = {"index":{"searchIndex":["adminbits","readme"],"longSearchIndex":["adminbits",""],"info":[["AdminBits","","AdminBits.html","",""],["README","","README_rdoc.html","","<p>AdminBits\n<p>This project rocks and uses MIT-LICENSE.\n"]]}}
