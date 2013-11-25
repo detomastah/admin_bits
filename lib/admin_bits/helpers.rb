@@ -15,7 +15,7 @@ module AdminBits
       link_to link_content, admin_resource.url(:order => attrib, :asc => ascending.to_s), :class => klass
     end
 
-    def admin_form(options = { :method => :get }, &block)
+    def admin_form(options = {}, &block)
       form_tag(admin_resource.original_url, options) do
         content = capture(&block)
 

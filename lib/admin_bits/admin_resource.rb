@@ -38,8 +38,24 @@ module AdminBits
       (request_params[:filters] || {}).with_indifferent_access
     end
 
+    def filters
+      return_scope = resource
+
+      (options[:filters] || {}).each_pair do |scope_name, args|
+        if args.is_a?(Array)
+          args = args.map {|a| filter_params[a] }
+
+          return_scope = return_scope.send(scope_name, *args)
+        else
+          return_scope = args.call(return_scope, self)
+        end
+      end
+
+      return_scope
+    end
+
     def output
-      resource.order(get_order).page(get_page)
+      filters.order(get_order).page(get_page)
     end
 
     def url_symbol
@@ -51,11 +67,11 @@ module AdminBits
     end
 
     def original_url
-      Rails.application.routes.url_helpers.send(url_symbol)
+      routes.send(url_symbol)
     end
 
     def url(params = {})
-      Rails.application.routes.url_helpers.send(
+      routes.send(
         url_symbol,
         request_params.merge(params)
       )
@@ -75,7 +91,7 @@ module AdminBits
       if order.blank?
         nil
       else
-        convert_mapping(order.to_sym)
+        convert_mapping(options[:ordering][order.to_sym])
       end
     end
 
@@ -83,8 +99,7 @@ module AdminBits
       request_params[:asc] != "true" ? "DESC" : "ASC"
     end
 
-    def convert_mapping(order)
-      mapping = options[:ordering][order]
+    def convert_mapping(mapping)
       # Check if mapping was provided
       raise "No order mapping specified for '#{order}'" if mapping.blank?
       # Convert to array in order to simplify processing

@@ -2,25 +2,30 @@ module AdminBits
   class Engine < ::Rails::Engine
   end
 
+  autoload :BaseConfig,     'admin_bits/base_config'
   autoload :Helpers,        'admin_bits/helpers'
   autoload :AdminResource,  'admin_bits/admin_resource'
 
   def self.included(base)
     base.extend(ClassMethods)
-    base.helper_method :admin_resource
   end
 
   module ClassMethods
-    def declare_resource(name, options = {})
+    def declare_resource(name, options = {}, &block)
       raise "Name must be Symbol" unless name.is_a?(Symbol)
+
+      ab_config = AdminBits::BaseConfig.new
+      ab_config.instance_eval &block
 
       helper_method name
       helper Helpers
+      helper_method :admin_resource
+      helper_method :admin_filter
 
       define_method :admin_resource do
         AdminResource.new(
           raw_resource,
-          options,
+          ab_config,
           action_name,
           params
         )
@@ -39,7 +44,6 @@ module AdminBits
       end
 
       private :admin_resource
-      private name
       private :raw_resource
     end
   end
