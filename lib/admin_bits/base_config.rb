@@ -27,6 +27,7 @@ module AdminBits
     rw_method :ordering
     rw_method :default_order
     rw_method :default_direction
+    rw_method :layout # :off | :default | "layout_name"
   end
 
   def eval!

@@ -6,4 +6,5 @@ Gem::Specification.new do |s|
   s.description = "Insert AdminBits description."
   s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.rdoc"]
   s.version = "0.0.1"
+  s.add_runtime_dependency 'kaminari'
 end

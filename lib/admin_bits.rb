@@ -43,6 +43,14 @@ module AdminBits
         admin_resource.output
       end
 
+
+      # Set layout, use default if not specified
+      if ab_config.get_layout.nil? || ab_config.get_layout == :default
+        layout "admin_bits"
+      elsif ab_config.get_layout != :off
+        layout ab_config.get_layout
+      end
+
       private :admin_resource
       private :raw_resource
     end
