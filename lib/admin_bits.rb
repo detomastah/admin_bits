@@ -51,8 +51,8 @@ module AdminBits
         layout ab_config.get_layout
       end
 
-      private :admin_resource
-      private :raw_resource
+      # private :admin_resource
+      # private :raw_resource
     end
   end
 end
