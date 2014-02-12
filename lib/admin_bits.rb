@@ -24,6 +24,7 @@ module AdminBits
 
       define_method :admin_resource do
         AdminResource.new(
+          name,
           raw_resource,
           ab_config,
           action_name,
@@ -43,16 +44,9 @@ module AdminBits
         admin_resource.output
       end
 
-
-      # Set layout, use default if not specified
-      if ab_config.get_layout.nil? || ab_config.get_layout == :default
-        layout "admin_bits"
-      elsif ab_config.get_layout != :off
-        layout ab_config.get_layout
+      if mods = ab_config.get_mods
+        mods.new(self)
       end
-
-      # private :admin_resource
-      # private :raw_resource
     end
   end
 end

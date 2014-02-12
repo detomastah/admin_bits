@@ -1,12 +1,13 @@
 module AdminBits
   class AdminResource
-    attr_reader :options, :resource, :request_params, :action_name
+    attr_reader :options, :resource, :request_params, :action_name, :name
 
-    def initialize(resource, options, action_name, request_params = {})
+    def initialize(name, resource, options, action_name, request_params = {})
       @resource       = resource
       @options        = options
       @request_params = request_params
       @action_name    = action_name
+      @name           = name
 
       raise ":path must be provided" unless @options[:path]
 

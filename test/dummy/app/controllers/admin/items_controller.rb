@@ -13,9 +13,18 @@ class Admin::ItemsController < ApplicationController
       :having_name => [:name],
       :price_within => [:from, :to]
     })
+    mods BasicAdminPanel
   end
 
   def index
     @items = Item
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
   end
 end

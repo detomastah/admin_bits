@@ -1,0 +1,30 @@
+<div id="filtering">
+  <%= admin_form :method => :get do %>
+    Name: <%= admin_text_filter :name %>
+    <br>
+    Price from <%= text_field_tag("filters[from]", admin_filter(:from)) %> and <%= text_field_tag("filters[to]", admin_filter(:to)) %>
+
+    <button>Filter!</button>
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <th>
+      <%= admin_link(:name, "Name") %>
+      <%= admin_link(:price, "Total price") %>
+    </th>
+  </thead>
+  <tbody>
+    <% items.each do |item| %>
+      <tr>
+        <td>
+          <%= item.name %>
+        </td>
+        <td>
+          <%= item.price %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

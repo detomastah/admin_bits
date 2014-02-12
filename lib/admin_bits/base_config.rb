@@ -28,6 +28,7 @@ module AdminBits
     rw_method :default_order
     rw_method :default_direction
     rw_method :layout # :off | :default | "layout_name"
+    rw_method :mods # [BasicAdminPanel]
   end
 
   def eval!
