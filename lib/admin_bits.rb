@@ -1,7 +1,4 @@
 module AdminBits
-  class Engine < ::Rails::Engine
-  end
-
   autoload :BaseConfig,     'admin_bits/base_config'
   autoload :Helpers,        'admin_bits/helpers'
   autoload :AdminResource,  'admin_bits/admin_resource'

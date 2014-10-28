@@ -19,7 +19,7 @@ module AdminBits
           date_from = Time.parse(date_from) rescue nil
           date_to   = Time.parse(date_to) rescue nil
 
-          result_scope = scoped
+          result_scope = where(nil)
 
           if date_from
             result_scope = result_scope.where(arel_table[column].gteq(date_from))
@@ -42,7 +42,7 @@ module AdminBits
             columns = options.fetch(:on)
             where(AdminExtension::Utils.create_search_conditions(text, columns))
           else
-            scoped
+            where(nil)
           end
         end
       end

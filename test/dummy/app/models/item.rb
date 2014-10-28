@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
     from = from.present? ? from.to_i : nil
     to   = to.present? ? to.to_i : nil
 
-    ret = scoped
+    ret = where(nil)
     ret = ret.where(["price <= ?", to]) if to
     ret = ret.where(["price >= ?", from]) if from
     ret
