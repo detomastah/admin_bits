@@ -97,5 +97,6 @@ DEPENDENCIES
   capybara (>= 0.4.0)
   kaminari
   rails (>= 4.0.0)
+  rake
   simple_form
   sqlite3

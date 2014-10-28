@@ -1,0 +1,18 @@
+script: "bundle exec rake"
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+  - ruby-head
+  - jruby
+  - rbx-2
+
+gemfile:
+  - Gemfile
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - gemfile: gemfiles/active_record_edge.gemfile
+  fast_finish: true
