@@ -10,8 +10,18 @@ class Admin::ItemsController < ApplicationController
     default_order :price
     default_direction :desc
     filters({
+      # Points to Item#having_name, passes params[:filters][:name] as the only param
       :having_name => [:name],
-      :price_within => [:from, :to]
+      # One can define own filter criteria of arbitrary name using lambdas
+      :price_between => lambda { |f|
+        from = f[:from].present? ? f[:from].to_i : nil
+        to   = f[:to].present? ? f[:to].to_i : nil
+
+        ret = where(nil)
+        ret = ret.where(["price <= ?", to]) if to
+        ret = ret.where(["price >= ?", from]) if from
+        ret
+      }
     })
     mods BasicAdminPanel
   end

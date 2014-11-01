@@ -23,8 +23,6 @@ module AdminBits
 
       request_params[:order] ||= default_order
       request_params[:asc]   ||= default_asc
-
-      #raise @request_params.inspect
     end
 
     def default_order
@@ -39,7 +37,7 @@ module AdminBits
       (request_params[:filters] || {}).with_indifferent_access
     end
 
-    def filters
+    def filtered_resource
       return_scope = resource
 
       (options[:filters] || {}).each_pair do |scope_name, args|
@@ -56,7 +54,7 @@ module AdminBits
     end
 
     def output
-      filters.order(get_order).page(get_page)
+      filtered_resource.order(get_order).page(get_page)
     end
 
     def url_symbol
@@ -82,10 +80,6 @@ module AdminBits
       request_params[:page]
     end
 
-    def routes
-      Rails.application.routes.url_helpers
-    end
-
     def get_order
       order = request_params[:order]
 
@@ -108,5 +102,12 @@ module AdminBits
       # Convert to SQL form
       mapping.map {|m| "#{m} #{get_direction}"}.join(", ")
     end
+
+    private
+
+    def routes
+      Rails.application.routes.url_helpers
+    end
+
   end
 end
