@@ -48,7 +48,7 @@ module AdminBits
 
           return_scope = return_scope.send(scope_name, *args)
         else
-          return_scope = args.call(return_scope, self)
+          return_scope = return_scope.instance_exec filter_params, &args
         end
       end
 
