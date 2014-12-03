@@ -2,6 +2,7 @@ module AdminBits
   autoload :BaseConfig,     'admin_bits/base_config'
   autoload :Helpers,        'admin_bits/helpers'
   autoload :AdminResource,  'admin_bits/admin_resource'
+  autoload :PathHandler,    'admin_bits/admin_resource/path_handler'
 
   def self.included(base)
     base.extend(ClassMethods)

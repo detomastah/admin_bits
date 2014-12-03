@@ -9,8 +9,9 @@ module AdminBits
     end
 
     def self.rw_method(name)
-      define_method name do |option|
-        @options[name] = option
+      define_method name do |value = nil, &block|
+        throw_error if block && value
+        @options[name] = value || block
       end
 
       define_method "get_#{name}" do
@@ -29,9 +30,9 @@ module AdminBits
     rw_method :default_direction
     rw_method :layout # :off | :default | "layout_name"
     rw_method :mods # [BasicAdminPanel]
+  private
+    def throw_error
+      raise "Please provide either block of value"
+    end
   end
-
-  def eval!
-  end
-
 end

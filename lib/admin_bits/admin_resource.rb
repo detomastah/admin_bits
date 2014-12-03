@@ -57,23 +57,12 @@ module AdminBits
       filtered_resource.order(get_order).page(get_page)
     end
 
-    def url_symbol
-      if options[:path].is_a?(Symbol)
-        options[:path]
-      else
-        instance_eval &options[:path]
-      end
-    end
-
     def original_url
-      routes.send(url_symbol)
+      PathHandler.new(options[:path], request_params).path
     end
 
     def url(params = {})
-      routes.send(
-        url_symbol,
-        request_params.merge(params)
-      )
+      PathHandler.new(options[:path], request_params).with_params(params)
     end
 
     def get_page
@@ -102,12 +91,5 @@ module AdminBits
       # Convert to SQL form
       mapping.map {|m| "#{m} #{get_direction}"}.join(", ")
     end
-
-    private
-
-    def routes
-      Rails.application.routes.url_helpers
-    end
-
   end
 end

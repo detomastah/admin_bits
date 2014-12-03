@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
   include AdminBits
 
   declare_resource :items do
-    path :admin_items_path
+    path { admin_items_path }
     ordering({
       :name => "items.name",
       :price => "items.price"
