@@ -54,6 +54,7 @@ module AdminBits
     end
 
     def output
+      # Paginator.new(filtered_resource.order(get_order), get_page).call
       filtered_resource.order(get_order).page(get_page)
     end
 
