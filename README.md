@@ -3,7 +3,13 @@ admin_bits
 
 [![Build Status](https://travis-ci.org/bitmincer/admin_bits.svg)](https://travis-ci.org/bitmincer/admin_bits)
 
-admin_bits is a gem for creating all kinds of dashboards and admin panels.
+AdminBits simplifies creation of sortable / searchable lists found in dashboards / admin panels.
+
+## Installation
+
+Add the following line to your Gemfile:
+
+`gem 'admin_bits', '~> 0.4.0'`
 
 ## Credits
 
