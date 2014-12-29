@@ -5,7 +5,7 @@ module AdminBits
     end
 
     def [](name)
-      @options[name]
+      @options.send name
     end
 
     def self.rw_method(name)

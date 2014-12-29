@@ -9,26 +9,27 @@ module AdminBits
   end
 
   module ClassMethods
-    def declare_resource(name, options = {}, &block)
+    def declare_resource(name, controller, &block)
       raise "Name must be Symbol" unless name.is_a?(Symbol)
 
-      ab_config = AdminBits::BaseConfig.new
-      ab_config.instance_eval &block
+      # ab_config = AdminBits::BaseConfig.new
+      # ab_config.instance_eval &block
+      controller.class_eval do
+        helper_method name
+        helper Helpers
 
-      helper_method name
-      helper Helpers
-      helper_method :admin_resource
-      helper_method :admin_filter
-
-      define_method :admin_resource do
-        AdminResource.new(
-          name,
-          raw_resource,
-          ab_config,
-          action_name,
-          params
-        )
+        helper_method :admin_filter
       end
+
+      # define_method :admin_resource do
+      #   AdminResource.new(
+      #     name,
+      #     raw_resource,
+      #     ab_config,
+      #     action_name,
+      #     params
+      #   )
+      # end
 
       define_method :raw_resource do
         instance_variable_get("@#{name}")
@@ -42,9 +43,9 @@ module AdminBits
         admin_resource.output
       end
 
-      if mods = ab_config.get_mods
-        mods.new(self)
-      end
+      # if mods = ab_config.get_mods
+      #   mods.new(self)
+      # end
     end
   end
 end

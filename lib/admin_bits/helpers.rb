@@ -1,5 +1,6 @@
 module AdminBits
   module Helpers
+
     def admin_link(attrib, name)
       link_content = name.html_safe
 

@@ -35,6 +35,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    coderay (1.1.0)
     erubis (2.7.0)
     hike (1.2.3)
     i18n (0.6.11)
@@ -45,6 +46,7 @@ GEM
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     metaclass (0.0.4)
+    method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.0)
     minitest (5.4.2)
@@ -53,6 +55,10 @@ GEM
     multi_json (1.10.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -75,6 +81,7 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    slop (3.5.0)
     sprockets (2.12.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -100,6 +107,7 @@ DEPENDENCIES
   capybara (>= 0.4.0)
   kaminari
   mocha
+  pry
   rails (>= 4.0.0)
   rake
   simple_form

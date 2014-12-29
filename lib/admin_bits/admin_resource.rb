@@ -9,7 +9,7 @@ module AdminBits
       @action_name    = action_name
       @name           = name
 
-      raise ":path must be provided" unless @options[:path]
+      raise ":path must be provided" unless @options.path
 
       sanitize_params
     end
@@ -26,11 +26,11 @@ module AdminBits
     end
 
     def default_order
-      options[:default_order].to_s
+      options.default_order.to_s
     end
 
     def default_asc
-      options[:default_direction] == :asc ? "true" : "false"
+      options.default_direction == :asc ? "true" : "false"
     end
 
     def filter_params
@@ -40,7 +40,7 @@ module AdminBits
     def filtered_resource
       return_scope = resource
 
-      (options[:filters] || {}).each_pair do |scope_name, args|
+      (options.filters || {}).each_pair do |scope_name, args|
         if args.is_a?(Array)
           args = args.map {|a| filter_params[a] }
 
@@ -59,11 +59,11 @@ module AdminBits
     end
 
     def original_url
-      PathHandler.new(options[:path], request_params).path
+      PathHandler.new(options.path, request_params).path
     end
 
     def url(params = {})
-      PathHandler.new(options[:path], request_params).with_params(params)
+      PathHandler.new(options.path, request_params).with_params(params)
     end
 
     def get_page
@@ -76,7 +76,7 @@ module AdminBits
       if order.blank?
         nil
       else
-        convert_mapping(options[:ordering][order.to_sym])
+        convert_mapping(options.ordering[order.to_sym])
       end
     end
 
