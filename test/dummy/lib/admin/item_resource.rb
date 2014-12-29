@@ -1,36 +1,7 @@
  class Admin::ItemResource
   include AdminBits
-  include Rails.application.routes.url_helpers
 
-  # will be moved to another class
-  ###########################################
-
-  def initialize(controller, params)
-    @params = params
-    @items = Item
-    @controller = controller
-    class_eval { declare_resource :item, controller }
-  end
-
-  def fetch_for_index
-    admin_resource.output
-  end
-
-  def filter_params
-    admin_resource.filter_params
-  end
-
-  def admin_resource
-    @admin_resource ||= AdminResource.new(
-      :item,
-      Item,
-      self,
-      'action_name',
-      @params
-    )
-  end
-
-  ########################################################
+  declare_resource :items
 
   def path
     admin_items_path
@@ -39,9 +10,9 @@
   def filters
     {
       # Points to Item#having_name, passes params[:filters][:name] as the only param
-      :having_name => [:name],
+      having_name: [:name],
       # One can define own filter criteria of arbitrary name using lambdas
-      :price_between => lambda { |f|
+      price_between: lambda { |f|
         from = f[:from].present? ? f[:from].to_i : nil
         to   = f[:to].present? ? f[:to].to_i : nil
 

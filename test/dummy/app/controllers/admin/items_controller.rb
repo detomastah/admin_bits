@@ -1,8 +1,8 @@
 class Admin::ItemsController < ApplicationController
-  helper_method :admin_resource
+  helper_method :admin_resource, :admin_filter
 
   def index
-    @item_resource = Admin::ItemResource.new(self, params)
+    @item_resource = Admin::ItemResource.new(params)
     @items = @item_resource.fetch_for_index
   end
 

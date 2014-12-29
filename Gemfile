@@ -19,3 +19,5 @@ end
 # gem 'ruby-debug'
 # gem 'ruby-debug19'
 gem "pry"
+gem "better_errors"
+gem "binding_of_caller"
