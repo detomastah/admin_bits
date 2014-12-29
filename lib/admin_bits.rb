@@ -1,5 +1,5 @@
 module AdminBits
-  autoload :Resource,     'admin_bits/resource'
+  autoload :Resource,       'admin_bits/resource'
   autoload :BaseConfig,     'admin_bits/base_config'
   autoload :Helpers,        'admin_bits/helpers'
   autoload :AdminResource,  'admin_bits/admin_resource'
@@ -24,7 +24,6 @@ module AdminBits
           name,
           raw_resource,
           self,
-          'action_name',
           params
         )
       end
