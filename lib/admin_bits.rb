@@ -14,30 +14,20 @@ module AdminBits
   end
 
   module ClassMethods
-    def declare_resource(name)
-      raise "Name must be Symbol" unless name.is_a?(Symbol)
+    def declare_resource(raw_resource)
 
       ActionView::Base.send :include, Helpers
 
       define_method :admin_resource do
         AdminResource.new(
-          name,
           raw_resource,
           self,
           params
         )
       end
 
-      define_method :raw_resource do
-        eval name.to_s.capitalize.singularize
-      end
-
       define_method :admin_filter do |name|
         admin_resource.filter_params[name]
-      end
-
-      define_method name do
-        admin_resource.output
       end
     end
   end

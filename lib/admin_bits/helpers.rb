@@ -3,7 +3,6 @@ module AdminBits
 
     def admin_link(attrib, name)
       link_content = name.html_safe
-
       if admin_resource.request_params[:order] == attrib.to_s
         ascending = admin_resource.request_params[:asc] == "true" ? true : false
         klass = ascending ? "sort_asc" : "sort_desc"

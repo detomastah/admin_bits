@@ -19,10 +19,10 @@ class Admin::ItemResource < AdminBits::Resource
   end
 
   def by_name(resource, direction = :asc)
-    resource.order('name #{direction}')
+    resource.order("name #{direction}")
   end
 
   def by_price(resource, direction = :asc)
-    resource.order('name #{direction}')
+    resource.order("price #{direction}")
   end
 end

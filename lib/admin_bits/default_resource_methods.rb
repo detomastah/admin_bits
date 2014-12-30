@@ -1,14 +1,11 @@
 module AdminBits
   module DefaultResourceMethods
+
     def path
 
     end
 
     def filters
-      {}
-    end
-
-    def ordering
       {}
     end
 
