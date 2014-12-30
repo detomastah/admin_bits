@@ -1,5 +1,4 @@
- class Admin::ItemResource
-  include AdminBits
+ class Admin::ItemResource < AdminBits::Resource
 
   declare_resource :items
 

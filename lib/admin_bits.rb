@@ -1,10 +1,10 @@
 module AdminBits
-  autoload :Resource,       'admin_bits/resource'
-  autoload :BaseConfig,     'admin_bits/base_config'
-  autoload :Helpers,        'admin_bits/helpers'
-  autoload :AdminResource,  'admin_bits/admin_resource'
-  autoload :PathHandler,    'admin_bits/admin_resource/path_handler'
-  include Resource
+  autoload :DefaultResourceMethods,  'admin_bits/default_resource_methods'
+  autoload :Resource,                'admin_bits/resource'
+  autoload :BaseConfig,              'admin_bits/base_config'
+  autoload :Helpers,                 'admin_bits/helpers'
+  autoload :AdminResource,           'admin_bits/admin_resource'
+  autoload :PathHandler,             'admin_bits/admin_resource/path_handler'
 
 
   def self.included(base)

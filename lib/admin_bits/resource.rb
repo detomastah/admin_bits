@@ -1,13 +1,18 @@
-module AdminBits::Resource
-  def initialize(params)
-    @params = params
-  end
+module AdminBits
+  class Resource
+    include AdminBits
+    include DefaultResourceMethods
 
-  def fetch_for_index
-    admin_resource.output
-  end
+    def initialize(params)
+      @params = params
+    end
 
-  def filter_params
-    admin_resource.filter_params
+    def fetch_for_index
+      admin_resource.output
+    end
+
+    def filter_params
+      admin_resource.filter_params
+    end
   end
 end
