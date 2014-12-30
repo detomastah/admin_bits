@@ -41,14 +41,8 @@ module AdminBits
     def filtered_resource
       return_scope = resource
 
-      (options.filters || {}).each_pair do |scope_name, args|
-        if args.is_a?(Array)
-          args = args.map {|a| filter_params[a] }
-
-          return_scope = return_scope.send(scope_name, *args)
-        else
-          return_scope = return_scope.instance_exec filter_params, &args
-        end
+      (options.filter_methods || []).each do |method_name|
+        return_scope = options.send(method_name, return_scope)
       end
 
       return_scope

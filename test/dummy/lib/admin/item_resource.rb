@@ -15,7 +15,7 @@ class Admin::ItemResource < AdminBits::Resource
   end
 
   def price_between(resource)
-    # ...
+    resource
   end
 
   def by_name(resource, direction = :asc)
