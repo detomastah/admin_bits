@@ -1,48 +1,28 @@
- class Admin::ItemResource < AdminBits::Resource
+class Admin::ItemResource < AdminBits::Resource
+  filters :having_name, :price_between
+  ordering :by_name, :by_price, :default => { :by_price => :asc }
 
-  declare_resource :items
+  def resource
+    Item
+  end
 
   def path
     admin_items_path
   end
 
-  def filters
-    {
-      # Points to Item#having_name, passes params[:filters][:name] as the only param
-      having_name: [:name],
-      # One can define own filter criteria of arbitrary name using lambdas
-      price_between: lambda { |f|
-        from = f[:from].present? ? f[:from].to_i : nil
-        to   = f[:to].present? ? f[:to].to_i : nil
-
-        ret = where(nil)
-        ret = ret.where(["price <= ?", to]) if to
-        ret = ret.where(["price >= ?", from]) if from
-        ret
-      }
-    }
+  def having_name(resource)
+    resource.having_name(filter_params[:name])
   end
 
-  def having_name(filter_params)
-    resource_class.having_name(filter_params[:name])
-  end
-
-  def price_between(filter_params)
+  def price_between(resource)
     # ...
   end
 
-  def ordering
-    {
-      name: "items.name",
-      price: "items.price"
-    }
+  def by_name(resource, direction = :asc)
+    resource.order('name #{direction}')
   end
 
-  def default_order
-    :price
-  end
-
-  def default_direction
-    :desc
+  def by_price(resource, direction = :asc)
+    resource.order('name #{direction}')
   end
 end
