@@ -1,6 +1,6 @@
 class Admin::ItemResource < AdminBits::Resource
   filters :having_name, :price_between
-  ordering :by_name, :by_price, :default => { :by_price => :asc }
+  ordering :by_name, :by_price, default: { by_price: :asc }
 
   def resource
     Item
