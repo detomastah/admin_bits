@@ -27,7 +27,7 @@ module AdminBits
     end
 
     def default_order
-      options.default_order.first.first[3..-1]
+      options.default_order.first.first
     end
 
     def default_asc
@@ -40,7 +40,6 @@ module AdminBits
 
     def filtered_resource
       return_scope = resource
-
       (options.filter_methods || []).each do |method_name|
         return_scope = options.send(method_name, return_scope)
       end
@@ -50,7 +49,7 @@ module AdminBits
 
     def output
       # Paginator.new(filtered_resource.order(get_order), get_page).call
-      options.send("by_#{ request_params[:order] }", filtered_resource, get_direction).page(get_page)
+      options.send(get_order, filtered_resource, get_direction).page(get_page)
     end
 
     def original_url
@@ -65,15 +64,15 @@ module AdminBits
       request_params[:page]
     end
 
-    # def get_order
-    #   order = request_params[:order]
+    def get_order
+      order = request_params[:order].to_sym
 
-    #   if order.blank?
-    #     nil
-    #   else
-    #     convert_mapping(options.ordering[order.to_sym])
-    #   end
-    # end
+      if options.ordering_methods.include?(order)
+        order
+      else
+        raise "invalid order method"
+      end
+    end
 
     def get_direction
       request_params[:asc] != "true" ? "DESC" : "ASC"

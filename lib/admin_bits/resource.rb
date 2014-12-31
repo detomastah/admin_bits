@@ -38,15 +38,15 @@ module AdminBits
       end
 
       def filter_methods
-        @@filter_methods
+        defined?(@@filter_methods) && @@filter_methods
       end
 
       def ordering_methods
-        @@ordering_methods
+        defined?(@@ordering_methods) && @@ordering_methods
       end
 
       def default_order
-        @@default_order
+        defined?(@@default_order) && @@default_order
       end
     end
   end
