@@ -3,13 +3,12 @@ module AdminBits
     include AdminBits
     include DefaultResourceMethods
 
-    attr_reader :default_order, :ordering_methods, :filter_methods
+    attr_reader :ordering_methods, :filter_methods
 
     def initialize(params)
       @params = params
       self.class.declare_resource resource
       @ordering_methods = self.class.ordering_methods
-      @default_order = self.class.default_order
       @filter_methods = self.class.filter_methods
     end
 
@@ -19,6 +18,11 @@ module AdminBits
 
     def filter_params
       admin_resource.filter_params
+    end
+
+    def default_order
+      class_order = self.class.default_order
+      { method: class_order.first, direction: class_order.last }
     end
 
 
@@ -32,7 +36,7 @@ module AdminBits
         args.each do |arg|
           @@ordering_methods << arg if arg.is_a?(Symbol)
           if arg.is_a?(Hash)
-            @@default_order = arg[:default]
+            @@default_order = arg[:default].first
           end
         end
       end

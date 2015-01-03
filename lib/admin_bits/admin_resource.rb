@@ -27,11 +27,11 @@ module AdminBits
     end
 
     def default_order
-      options.default_order.first.first
+      options.default_order[:method]
     end
 
     def default_asc
-      options.default_order.first.last == :asc ? "true" : "false"
+      options.default_order[:direction] == :asc ? "true" : "false"
     end
 
     def filter_params
