@@ -13,6 +13,19 @@ Add the following line to your Gemfile:
 
 ## Usage
 
+### Getting Started
+We recommend to use admin_bits generator.
+```rails generate admin_bits [options]```
+
+option | description
+------ | ---------
+-R, --resource=RESOURCE | Name of the resource eg. 'products'
+-NS, --namespace=NAMESPACE | Name of the namespace for the generated controller eg. 'admin' <br> Default: admin
+-U, --unify, --no-unify | Create special BaseController in the selected namespace <br> Default: true
+-L, --layout=LAYOUT | Name of the generated layout eg. 'admin' will be placed in 'app/views/layouts/admin.html.erb' <br> Default: admin
+
+This generator will create  controller for specified resource, class which contain settings related with resource placed in `lib/namespace` and layout. Depending on the options it can also create BaseController. If you want to use our helpers you have to generate this BaseController.
+
 ### Resource class
 
 #### Basic overview
