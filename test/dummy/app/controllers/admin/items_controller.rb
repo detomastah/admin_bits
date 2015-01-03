@@ -1,9 +1,7 @@
-class Admin::ItemsController < ApplicationController
-  helper_method :admin_resource, :admin_filter
+class Admin::ItemsController < Admin::BaseController
 
   def index
-    @item_resource = Admin::ItemResource.new(params)
-    @items = @item_resource.fetch_for_index
+    @items = resource.fetch_for_index
   end
 
   def edit
@@ -16,11 +14,7 @@ class Admin::ItemsController < ApplicationController
 
   private
 
-  def admin_resource
-    @item_resource.admin_resource
-  end
-
-  def admin_filter(name)
-    @item_resource.filter_params[name]
+  def resource
+    @resource ||= Admin::ItemResource.new(params)
   end
 end
