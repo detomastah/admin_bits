@@ -1,28 +1,7 @@
-class <%= namespace.camelcase %>::<%= controller_name.camelcase %> < ActionController::Base
-  include AdminBits
-
-  declare_resource :<%= resource %> do
-    # This should be path to your index action - you can create any path you like
-    path :<%= namespace %>_<%= resource %>_path
-    # Ordering contains key - sort order definitions in SQL.
-    # This is just the simplest example, for more information visit...[page]
-    ordering({
-      id: "<%= resource %>.id"
-    })
-    default_order :id
-    default_direction :asc
-    # Conditions
-    filters({
-      # name_of_the_scope: [:name_of_the_param, :name_of_another_param_passed_to_the_scope],
-      # arbitrary_filter_name: [:from, :to]
-      id_between: lambda { |f| where("items.id BETWEEN ? AND ?", f[:from], f[:to]) }
-    })
-  end
-
+class <%= namespace.camelcase %>::<%= controller_name.camelcase %> <%= '<' %> ActionController::Base
   <% klass = resource.singularize.camelcase %>
-
   def index
-    @<%= resource %> = <%= klass %>
+    @<%= resource %> = resource.fetch_for_index
   end
 
   def edit
@@ -31,5 +10,11 @@ class <%= namespace.camelcase %>::<%= controller_name.camelcase %> < ActionContr
 
   def update
     @<%= resource %> = <%= klass %>.find(params[:id])
+  end
+
+  private
+
+  def resource
+    @resource ||= <%= namespace.camelcase %>::<%= resource_name.camelcase %>.new(params)
   end
 end

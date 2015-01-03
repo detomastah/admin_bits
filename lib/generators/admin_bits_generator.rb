@@ -16,9 +16,9 @@ class AdminBitsGenerator < Rails::Generators::Base
     :required => true,
     :desc => "Name of the resource eg. 'products' will create 'namespace/products_controller.rb'",
     :aliases => '-R'
-  class_option :unify, # TODO
+  class_option :unify,
     :type => :boolean,
-    :default => false,
+    :default => true,
     :desc => "Create special BaseController in the selected namespace",
     :aliases => '-U'
 
@@ -29,7 +29,17 @@ class AdminBitsGenerator < Rails::Generators::Base
   end
 
   def create_controller
-    template "controller.rb.erb", "app/controllers/#{ namespace }/#{ resource }_controller.rb"
+    template "controller.rb.erb", "app/controllers/#{ namespace }/#{ controller_name }.rb"
+  end
+
+  def create_resource
+    template "resource.rb.erb", "lib/#{ namespace }/#{ resource_name }.rb"
+  end
+
+  def create_base_controller
+    if options[:unify]
+      template "base_controller.rb.erb", "app/controllers/#{ namespace }/base_controller.rb"
+    end
   end
 
   protected
@@ -44,6 +54,10 @@ class AdminBitsGenerator < Rails::Generators::Base
 
   def resource
     options[:resource]
+  end
+
+  def resource_name
+    (resource.singularize + '_resource')
   end
 
   def controller_name

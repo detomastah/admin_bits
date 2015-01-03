@@ -1,0 +1,21 @@
+class <%= namespace.camelcase %>::<%= resource_name.camelcase %> <%= '<' %> AdminBits::Resource
+  filters :sample_filter_method
+  ordering :by_id, default: { by_id: :asc }
+
+  def resource
+    <%= resource.singularize.camelcase %>
+  end
+
+  def path
+    # This should be path to your index action - you can create any path you like
+    <%= namespace %>_<%= resource %>_path
+  end
+
+  def sample_filter_method(resource)
+    resource
+  end
+
+  def by_id(resource, direction = :asc)
+    resource.order("id #{direction}")
+  end
+end
