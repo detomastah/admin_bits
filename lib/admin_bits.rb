@@ -5,6 +5,8 @@ module AdminBits
   autoload :Helpers,                 'admin_bits/helpers'
   autoload :AdminResource,           'admin_bits/admin_resource'
   autoload :PathHandler,             'admin_bits/admin_resource/path_handler'
+  autoload :ActiveRecordSort,        'admin_bits/sorting/active_record_sort'
+  autoload :PlainSort,               'admin_bits/sorting/plain_sort'
 
 
   def self.included(base)

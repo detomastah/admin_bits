@@ -49,7 +49,7 @@ module AdminBits
 
     def output
       # Paginator.new(filtered_resource.order(get_order), get_page).call
-      options.send(get_order, filtered_resource, get_direction).page(get_page)
+      options.send(get_order, filtered_resource, get_direction) #.page(get_page)
     end
 
     def original_url
