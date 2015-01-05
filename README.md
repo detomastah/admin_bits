@@ -76,7 +76,7 @@ def by_name(resource, direction = :asc)
   resource.order("name #{direction}")
 end
 ```
- ###### ActiveRecord
+###### ActiveRecord
  If your resource inherits form ActiveRecord you can use `by_each_attribute` ordering option. This option will generate by_attribute_name sorting method for each attribute of resource, you can use those methods like other self-defined ordering methods. You can also overwrite some of them.
 ```ruby
 ordering :by_each_attribute
