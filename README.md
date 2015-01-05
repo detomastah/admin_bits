@@ -76,6 +76,23 @@ def by_name(resource, direction = :asc)
   resource.order("name #{direction}")
 end
 ```
+ ###### ActiveRecord
+ If your resource inherits form ActiveRecord you can use `by_each_attribute` ordering option. This option will generate by_attribute_name sorting method for each attribute of resource, you can use those methods like other self-defined ordering methods. You can also overwrite some of them.
+```ruby
+ordering :by_each_attribute
+```
+###### Plain resource
+If your resource is Array you can use `plain` ordering option. This allows you to use `plain` ordering method like other ordering methods. If your resource is Array this method will sort your Array. If you pass `:desc` as second argument your resource will be sort descending.
+```ruby
+ordering :plain
+```
+#### Pagination
+You can paginate your resources. To do this you have to pass page number in `params[:page]` You can customize "per_page" value in Resource class
+```ruby
+def per_page
+  30
+end
+```
 
 ## Credits
 
