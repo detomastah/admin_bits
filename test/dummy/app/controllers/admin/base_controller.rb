@@ -7,7 +7,11 @@ class Admin::BaseController < ApplicationController
     resource.admin_resource
   end
 
-  def admin_filter(name)
-    resource.filter_params[name]
+  def admin_filter(*args)
+    result = resource.filter_params
+    args.each do |arg|
+      result = result.try(:fetch, arg, nil)
+    end
+    result
   end
 end

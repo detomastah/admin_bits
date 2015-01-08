@@ -11,7 +11,7 @@ class Admin::ItemResource < AdminBits::Resource
   end
 
   def having_name(resource)
-    resource.having_name(filter_params[:name])
+    resource.having_name(filter_params[:having_name])
   end
 
   def price_between(resource)

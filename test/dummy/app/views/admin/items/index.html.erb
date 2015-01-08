@@ -1,8 +1,9 @@
 <div id="filtering">
   <%= admin_form :method => :get do %>
-    Name: <%= admin_text_filter :name %>
+    Name: <%= admin_text_filter :having_name %>
     <br>
-    Price from <%= text_field_tag("filters[from]", admin_filter(:from)) %> and <%= text_field_tag("filters[to]", admin_filter(:to)) %>
+    Price from <%= text_field_tag("filters[price_between][from]", admin_filter(:price_between, :from)) %>
+    and <%= text_field_tag("filters[price_between][to]", admin_filter(:price_between, :to)) %>
 
     <button>Filter!</button>
   <% end %>

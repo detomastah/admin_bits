@@ -41,7 +41,11 @@ module AdminBits
     def filtered_resource
       return_scope = resource
       (options.filter_methods || []).each do |method_name|
-        return_scope = options.send(method_name, return_scope)
+        method_param = request_params[:filters].try :fetch, method_name, nil
+
+        if method_param.present? && ((not method_param.is_a? Hash) || method_param.values.any?(&:present?))
+          return_scope = options.send(method_name, return_scope)
+        end
       end
 
       return_scope
