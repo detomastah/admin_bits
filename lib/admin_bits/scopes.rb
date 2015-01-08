@@ -1,5 +1,5 @@
 module AdminBits
-  module ActiveRecordScopes
+  module Scopes
 
     def self.included(base)
       base.extend(ClassMethods)
@@ -14,21 +14,22 @@ module AdminBits
         @@admin_extension_scopes ||= {}
         @@admin_extension_scopes[name] = :time_range
 
-        define_method name do |date_from, date_to|
+        scope name, ->(date_from, date_to) do
           column = options.fetch(:on)
           date_from = Time.parse(date_from) rescue nil
           date_to   = Time.parse(date_to) rescue nil
 
-          result_scope = current_resource
+          result_scope = where(nil)
+
           if date_from
-            result_scope = result_scope.where("#{column} >= ?",  date_from)
+            result_scope = result_scope.where(arel_table[column].gteq(date_from))
           end
 
           if date_to
-            result_scope = result_scope.where("#{column} <= ?",  date_to)
+            result_scope = result_scope.where(arel_table[column].lteq(date_to))
           end
-          @filtered_resource = result_scope
-          self
+
+          result_scope
         end
       end
 
@@ -36,14 +37,13 @@ module AdminBits
         @@admin_extension_scopes ||= {}
         @@admin_extension_scopes[name] = :text
 
-        define_method name do |text|
-          result_scope = current_resource
-
+        scope name, ->(text) do
           if text.present?
             columns = options.fetch(:on)
-            @filtered_resource = result_scope.where(AdminExtension::Utils.create_search_conditions(text, columns))
+            where(AdminExtension::Utils.create_search_conditions(text, columns))
+          else
+            where(nil)
           end
-          self
         end
       end
     end
