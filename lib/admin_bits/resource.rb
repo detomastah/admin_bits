@@ -2,11 +2,12 @@ module AdminBits
   class Resource
     include AdminBits
     include DefaultResourceMethods
+    include ActiveRecordScopes
 
     attr_reader :ordering_methods, :filter_methods
 
     def initialize(params)
-      include_sorting_class
+      include_proper_classes
       @params = params
       self.class.declare_resource resource
       determine_ordering_methods
@@ -26,7 +27,7 @@ module AdminBits
       { method: class_order.first, direction: class_order.last }
     end
 
-    def include_sorting_class
+    def include_proper_classes
       if resource_class.ancestors.include? ActiveRecord::Base
         self.class.include ActiveRecordSort
       else
@@ -44,6 +45,10 @@ module AdminBits
         @ordering_methods += by_each_attribute
         @ordering_methods.delete :by_each_attribute
       end
+    end
+
+    def current_resource
+      filtered_resource || resource
     end
 
     class << self

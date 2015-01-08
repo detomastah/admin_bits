@@ -39,7 +39,7 @@ module AdminBits
     end
 
     def filtered_resource
-      return_scope = resource
+      return_scope = options.current_resource
       (options.filter_methods || []).each do |method_name|
         return_scope = options.send(method_name, return_scope)
       end

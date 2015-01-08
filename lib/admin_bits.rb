@@ -7,6 +7,7 @@ module AdminBits
   autoload :PathHandler,             'admin_bits/admin_resource/path_handler'
   autoload :ActiveRecordSort,        'admin_bits/sorting/active_record_sort'
   autoload :PlainSort,               'admin_bits/sorting/plain_sort'
+  autoload :ActiveRecordScopes,      'admin_bits/scopes/active_record_scopes'
 
 
   def self.included(base)
