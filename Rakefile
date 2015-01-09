@@ -30,4 +30,9 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+# RSpec::Core::RakeTask.new
+
+# task :default => :spec
+# task :test => :spec
+
 
