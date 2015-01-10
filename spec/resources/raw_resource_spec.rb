@@ -8,7 +8,6 @@ describe Admin::RawResource do
   end
 
   describe '.fetch_for_index' do
-
     describe 'without params' do
       let(:params) { {} }
 
@@ -64,7 +63,6 @@ describe Admin::RawResource do
         end
       end
     end
-
   end
 end
 
