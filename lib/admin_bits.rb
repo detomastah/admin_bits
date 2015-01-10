@@ -16,16 +16,12 @@ module AdminBits
   end
 
   module ClassMethods
-    def declare_resource(raw_resource)
+    def declare_resource
 
       ActionView::Base.send :include, Helpers
 
       define_method :admin_resource do
-        AdminResource.new(
-          raw_resource,
-          self,
-          params
-        )
+        AdminResource.new(self, params)
       end
 
       define_method :admin_filter do |name|

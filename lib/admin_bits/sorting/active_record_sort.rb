@@ -1,4 +1,4 @@
-module ActiveRecordSort
+module AdminBits::ActiveRecordSort
   def by_each_attribute
     attribute_names = resource.attribute_names
 

@@ -8,7 +8,7 @@ module AdminBits
     def initialize(params)
       include_sorting_class
       @params = params
-      self.class.declare_resource resource
+      self.class.declare_resource
       determine_ordering_methods
       @filter_methods = self.class.filter_methods
     end
@@ -48,29 +48,29 @@ module AdminBits
 
     class << self
       def filters(*args)
-        @@filter_methods = args
+        @filter_methods = args
       end
 
       def ordering(*args)
-        @@ordering_methods = []
+        @ordering_methods = []
         args.each do |arg|
-          @@ordering_methods << arg if arg.is_a?(Symbol)
+          @ordering_methods << arg if arg.is_a?(Symbol)
           if arg.is_a?(Hash)
-            @@default_order = arg[:default].first
+            @default_order = arg[:default].first
           end
         end
       end
 
       def filter_methods
-        defined?(@@filter_methods) && @@filter_methods
+        @filter_methods || []
       end
 
       def ordering_methods
-        defined?(@@ordering_methods) && @@ordering_methods
+        @ordering_methods || []
       end
 
       def default_order
-        defined?(@@default_order) && @@default_order
+        @default_order || []
       end
     end
   end

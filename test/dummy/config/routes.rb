@@ -43,6 +43,7 @@ Dummy::Application.routes.draw do
     # Directs /admin/items/* to Admin::ProductsController
     # (app/controllers/admin/products_controller.rb)
     resources :items
+    get :raw
   end
 
   # You can have the root of your site routed with "root"

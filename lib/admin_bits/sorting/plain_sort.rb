@@ -1,4 +1,4 @@
-module PlainSort
+module AdminBits::PlainSort
   def plain(resource, direction = :asc)
     direction = direction.downcase.to_sym
     resource.sort!

@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-
-
 describe Admin::ItemResource do
   let!(:item_1) { create(:item, name: 'item 1', price: 100) }
   let!(:item_2) { create(:item, name: 'item 2', price: 150) }
@@ -23,6 +21,10 @@ describe Admin::ItemResource do
     end
 
     describe 'ordering' do
+      its 'class includes ActiveRecordSort' do
+        expect(described_class.ancestors).to include AdminBits::ActiveRecordSort
+      end
+
       context 'by_name asc' do
         let(:params) {{ 'asc'=>'true', 'order'=>'by_name' }}
 

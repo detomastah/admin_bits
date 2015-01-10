@@ -2,8 +2,8 @@ module AdminBits
   class AdminResource
     attr_reader :options, :resource, :request_params
 
-    def initialize(resource, options, request_params = {})
-      @resource       = resource
+    def initialize(options, request_params = {})
+      @resource       = options.resource
       @options        = options
       @request_params = request_params
 
@@ -40,7 +40,7 @@ module AdminBits
 
     def filtered_resource
       return_scope = resource
-      (options.filter_methods || []).each do |method_name|
+      options.filter_methods.each do |method_name|
         method_param = request_params[:filters].try :fetch, method_name, nil
 
         if method_param.present? && ((not method_param.is_a? Hash) || method_param.values.any?(&:present?))
@@ -52,6 +52,7 @@ module AdminBits
     end
 
     def output
+      return filtered_resource unless request_params[:order]
       # Paginator.new(filtered_resource.order(get_order), get_page).call
       options.send(get_order, filtered_resource, get_direction) #.page(get_page)
     end
