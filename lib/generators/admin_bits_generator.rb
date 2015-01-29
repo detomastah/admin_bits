@@ -2,6 +2,10 @@ require 'rails/generators'
 require 'rbconfig'
 
 class AdminBitsGenerator < Rails::Generators::Base
+  argument :resource,
+    :type => :string,
+    :required => true,
+    :desc => "Name of the resource eg. 'products' will create 'namespace/products_controller.rb'"
 
   class_option :layout,
     :type => :string,
@@ -11,17 +15,12 @@ class AdminBitsGenerator < Rails::Generators::Base
     :type => :string,
     :desc => "Name of the namespace for the generated controller eg. 'admin'",
     :aliases => '-NS', :default => 'admin'
-  class_option :resource,
-    :type => :string,
-    :required => true,
-    :desc => "Name of the resource eg. 'products' will create 'namespace/products_controller.rb'",
-    :aliases => '-R'
   class_option :unify,
     :type => :boolean,
     :default => true,
     :desc => "Create special BaseController in the selected namespace",
     :aliases => '-U'
-  class_option :add_routing,
+  class_option :routing,
     :type => :boolean,
     :default => true,
     :desc => "Add routing based on resource and namespace",
@@ -30,6 +29,7 @@ class AdminBitsGenerator < Rails::Generators::Base
   self.source_paths << File.join(File.dirname(__FILE__), 'templates')
 
   def create_layout
+    binding.pry
     template "layout.html.erb", "app/views/layouts/#{ layout }.html.erb"
   end
 
@@ -61,10 +61,6 @@ class AdminBitsGenerator < Rails::Generators::Base
 
   def namespace
     options[:namespace]
-  end
-
-  def resource
-    options[:resource]
   end
 
   def resource_name
