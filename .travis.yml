@@ -1,8 +1,9 @@
-script: "cd test/dummy"
-script: "bundle exec rake db:migrate"
-script: "bundle exec rake db:test:prepare"
-script: "cd ../.."
-script: "bundle exec rake"
+script:
+  - "cd test/dummy"
+  - "bundle exec rake db:migrate"
+  - "bundle exec rake db:test:prepare"
+  - "cd ../.."
+  - "bundle exec rake"
 
 rvm:
   - 1.9.3
