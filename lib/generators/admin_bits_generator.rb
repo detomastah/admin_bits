@@ -49,7 +49,7 @@ class AdminBitsGenerator < Rails::Generators::Base
 
   def add_routing
     if options[:add_routing]
-      route("resources :#{resource}, namespace: :#{namespace}")
+      route("namespace :#{namespace} do \n    resources :#{resource} \n  end")
     end
   end
 
