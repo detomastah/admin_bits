@@ -23,6 +23,7 @@ option | description
 -NS, --namespace=NAMESPACE | Name of the namespace for the generated controller eg. 'admin' <br> Default: admin
 -U, --unify, --no-unify | Create special BaseController in the selected namespace <br> Default: true
 -L, --layout=LAYOUT | Name of the generated layout eg. 'admin' will be placed in 'app/views/layouts/admin.html.erb' <br> Default: admin
+-AR, --add_routing=LAYOUT | Add routing based on resource and namespace <br> Default: true
 
 This generator will create  controller for specified resource, class which contain settings related with resource placed in `lib/namespace` and layout. Depending on the options it can also create BaseController. If you want to use our helpers you have to generate this BaseController.
 

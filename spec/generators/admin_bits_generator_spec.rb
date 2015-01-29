@@ -85,7 +85,7 @@ describe AdminBitsGenerator do
     end
 
     it 'has correct syntax' do
-      expect(subject).to contain('resources :objects, namespace: :admin')
+      expect(subject).to contain("namespace :admin do \n    resources :objects \n  end")
     end
   end
 end
