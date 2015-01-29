@@ -7,10 +7,9 @@ describe AdminBitsGenerator do
 
   before { prepare_destination }
 
-
   describe 'the generated files' do
 
-    before { run_generator %w(--resource items)  }
+    before { run_generator %w(--resource items --add_routing false)  }
 
     describe 'resource class' do
       subject { file("lib/admin/item_resource.rb") }
@@ -67,6 +66,26 @@ describe AdminBitsGenerator do
         expect(subject).to have_method :update
         expect(subject).to have_method :resource
       end
+    end
+  end
+
+  describe 'routes' do
+    subject { file('config/routes.rb') }
+
+    before do
+      routes = Rails.root + 'config/routes.rb'
+      destination = File.join(destination_root, 'config')
+      FileUtils.mkdir_p(destination)
+      FileUtils.cp routes, destination
+      run_generator %w(--resource objects)
+    end
+
+    it 'has correct syntax' do
+      expect(subject).to have_correct_syntax
+    end
+
+    it 'has correct syntax' do
+      expect(subject).to contain('resources :objects, namespace: :admin')
     end
   end
 end

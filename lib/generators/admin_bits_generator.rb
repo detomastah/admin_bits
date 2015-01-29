@@ -21,6 +21,11 @@ class AdminBitsGenerator < Rails::Generators::Base
     :default => true,
     :desc => "Create special BaseController in the selected namespace",
     :aliases => '-U'
+  class_option :add_routing,
+    :type => :boolean,
+    :default => true,
+    :desc => "Add routing based on resource and namespace",
+    :aliases => '-AR'
 
   self.source_paths << File.join(File.dirname(__FILE__), 'templates')
 
@@ -39,6 +44,12 @@ class AdminBitsGenerator < Rails::Generators::Base
   def create_base_controller
     if options[:unify]
       template "base_controller.rb.erb", "app/controllers/#{ namespace }/base_controller.rb"
+    end
+  end
+
+  def add_routing
+    if options[:add_routing]
+      route("resources :#{resource}, namespace: :#{namespace}")
     end
   end
 
