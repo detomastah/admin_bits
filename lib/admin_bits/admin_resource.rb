@@ -1,15 +1,13 @@
 module AdminBits
   class AdminResource
-    attr_reader :options, :resource, :request_params, :action_name, :name
+    attr_reader :options, :resource, :request_params
 
-    def initialize(name, resource, options, action_name, request_params = {})
-      @resource       = resource
+    def initialize(options, request_params = {})
+      @resource       = options.resource
       @options        = options
       @request_params = request_params
-      @action_name    = action_name
-      @name           = name
 
-      raise ":path must be provided" unless @options[:path]
+      raise ":path must be provided" unless @options.path
 
       sanitize_params
     end
@@ -20,17 +18,20 @@ module AdminBits
         reject do |k,v|
           ["action", "controller", "commit"].include?(k) || v.blank?
         end
-
-      request_params[:order] ||= default_order
-      request_params[:asc]   ||= default_asc
+      if request_params[:order]
+        request_params[:order]
+      else
+        request_params[:order] ||= default_order
+        request_params[:asc]   ||= default_asc
+      end
     end
 
     def default_order
-      options[:default_order].to_s
+      options.default_order[:method]
     end
 
     def default_asc
-      options[:default_direction] == :asc ? "true" : "false"
+      options.default_order[:direction] == :asc ? "true" : "false"
     end
 
     def filter_params
@@ -39,14 +40,11 @@ module AdminBits
 
     def filtered_resource
       return_scope = resource
+      options.filter_methods.each do |method_name|
+        method_param = request_params[:filters].try :fetch, method_name, nil
 
-      (options[:filters] || {}).each_pair do |scope_name, args|
-        if args.is_a?(Array)
-          args = args.map {|a| filter_params[a] }
-
-          return_scope = return_scope.send(scope_name, *args)
-        else
-          return_scope = return_scope.instance_exec filter_params, &args
+        if method_param.present? && ((not method_param.is_a? Hash) || method_param.values.any?(&:present?))
+          return_scope = options.send(method_name, return_scope)
         end
       end
 
@@ -54,16 +52,17 @@ module AdminBits
     end
 
     def output
+      return filtered_resource unless request_params[:order]
       # Paginator.new(filtered_resource.order(get_order), get_page).call
-      filtered_resource.order(get_order).page(get_page)
+      options.send(get_order, filtered_resource, get_direction) #.page(get_page)
     end
 
     def original_url
-      PathHandler.new(options[:path], request_params).path
+      PathHandler.new(options.path, request_params).path
     end
 
     def url(params = {})
-      PathHandler.new(options[:path], request_params).with_params(params)
+      PathHandler.new(options.path, request_params).with_params(params)
     end
 
     def get_page
@@ -71,12 +70,12 @@ module AdminBits
     end
 
     def get_order
-      order = request_params[:order]
+      order = request_params[:order].to_sym
 
-      if order.blank?
-        nil
+      if options.ordering_methods.include?(order)
+        order
       else
-        convert_mapping(options[:ordering][order.to_sym])
+        raise "invalid order method"
       end
     end
 
@@ -84,13 +83,13 @@ module AdminBits
       request_params[:asc] != "true" ? "DESC" : "ASC"
     end
 
-    def convert_mapping(mapping)
-      # Check if mapping was provided
-      raise "No order mapping specified for '#{order}'" if mapping.blank?
-      # Convert to array in order to simplify processing
-      mapping = [mapping] if mapping.is_a?(String)
-      # Convert to SQL form
-      mapping.map {|m| "#{m} #{get_direction}"}.join(", ")
-    end
+    # def convert_mapping(mapping)
+    #   # Check if mapping was provided
+    #   raise "No order mapping specified for '#{order}'" if mapping.blank?
+    #   # Convert to array in order to simplify processing
+    #   mapping = [mapping] if mapping.is_a?(String)
+    #   # Convert to SQL form
+    #   mapping.map {|m| "#{m} #{get_direction}"}.join(", ")
+    # end
   end
 end

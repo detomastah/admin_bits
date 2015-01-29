@@ -1,10 +1,18 @@
-script: "bundle exec rake"
+script:
+  - "cd test/dummy"
+  - "bundle exec rake db:migrate"
+  - "bundle exec rake db:test:prepare"
+  - "cd ../.."
+  - "bundle exec rake"
 
 rvm:
   - 1.9.3
   - 2.0.0
   - 2.1
   - ruby-head
+
+env:
+  - DB=sqlite
 
 gemfile:
   - Gemfile
