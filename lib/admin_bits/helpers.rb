@@ -3,8 +3,8 @@ module AdminBits
 
     def admin_link(attrib, name)
       link_content = name.html_safe
-      if admin_resource.request_params[:order] == attrib.to_s
-        ascending = admin_resource.request_params[:asc] == "true" ? true : false
+      if params_handler.request_params[:order] == attrib.to_s
+        ascending = params_handler.request_params[:asc] == "true" ? true : false
         klass = ascending ? "sort_asc" : "sort_desc"
         ascending = !ascending
       else
@@ -12,16 +12,16 @@ module AdminBits
         ascending = true
       end
 
-      link_to link_content, admin_resource.url(:order => attrib, :asc => ascending.to_s), :class => klass
+      link_to link_content, params_handler.url(:order => attrib, :asc => ascending.to_s), :class => klass
     end
 
     def admin_form(options = {}, &block)
-      form_tag(admin_resource.original_url, options) do
+      form_tag(params_handler.original_url, options) do
         content = capture(&block)
 
         tags = [
-          hidden_field_tag("order", admin_resource.request_params[:order]),
-          hidden_field_tag("asc", admin_resource.request_params[:asc]),
+          hidden_field_tag("order", params_handler.request_params[:order]),
+          hidden_field_tag("asc", params_handler.request_params[:asc]),
           content
         ]
 
@@ -34,11 +34,11 @@ module AdminBits
     end
 
     def admin_text_filter(attribute)
-      text_field_tag "filters[#{attribute}]", admin_resource.filter_params[attribute]
+      text_field_tag "filters[#{attribute}]", params_handler.filter_params[attribute]
     end
 
     def admin_date_filter(attribute)
-      text_field_tag "filters[#{attribute}]", admin_resource.filter_params[attribute], :class => "datepicker"
+      text_field_tag "filters[#{attribute}]", params_handler.filter_params[attribute], :class => "datepicker"
     end
   end
 end

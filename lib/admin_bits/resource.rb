@@ -14,11 +14,11 @@ module AdminBits
     end
 
     def fetch_for_index
-      admin_resource.output
+      params_handler.output
     end
 
     def filter_params
-      admin_resource.filter_params
+      params_handler.filter_params
     end
 
     def default_order

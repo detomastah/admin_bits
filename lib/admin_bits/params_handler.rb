@@ -1,5 +1,5 @@
 module AdminBits
-  class AdminResource
+  class ParamsHandler
     attr_reader :options, :resource, :request_params
 
     def initialize(options, request_params = {})

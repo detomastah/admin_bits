@@ -1,4 +1,4 @@
-class AdminBits::AdminResource::PathHandler
+class AdminBits::ParamsHandler::PathHandler
   attr_reader :request_params, :unprocessed_path
 
   def initialize(path, request_params)
