@@ -1,31 +1,51 @@
-admin_bits
+AdminBits
 ==========
 
 [![Build Status](https://travis-ci.org/bitmincer/admin_bits.svg)](https://travis-ci.org/bitmincer/admin_bits)
 
 AdminBits simplifies creation of sortable / searchable lists found in dashboards / admin panels.
 
+## Information
+
+* RDoc documentation [available on RubyDoc.info](http://rubydoc.info/gems/admin_bits)
+* Source code [available on GitHub](https://github.com/bitmincer/admin_bits)
+* More information, known limitations, and how-tos [available on the wiki](https://github.com/bitmincer/admin_bits/wiki)
+
+## Getting Help
+
+* Please report bugs on the [issue tracker](https://github.com/bitmincer/admin_bits/issues) but read the "getting help" section in the wiki first.
+
 ## Installation
 
-Add the following line to your Gemfile:
+Install the latest stable release:
 
-`gem 'admin_bits', '~> 0.4.0'`
+  [sudo] gem install admin_bits
 
-## Usage
+In Rails, add it to your Gemfile:
 
-### Getting Started
+```ruby
+gem 'admin_bits'
+```
+
+Finally, restart the server to apply the changes.
+
+## Getting Started
 We recommend to use admin_bits generator.
-```rails generate admin_bits resource [options]```
+```
+  rails generate admin_bits items [options]
+```
 
-option | description
------- | ---------
-resource | Name of the resource eg. 'products'
--NS, --namespace=NAMESPACE | Name of the namespace for the generated controller eg. 'admin' <br> Default: admin
--L, --layout=LAYOUT | Name of the generated layout eg. 'admin' will be placed in 'app/views/layouts/admin.html.erb' <br> Default: admin
---skip-unify | Skip creation special BaseController in the selected namespace
---skip-routing | Skip add routing based on resource and namespace
+this should add route `admin/items` and give you files:
+```
+  lib/admin/item_resource.rb
+  app/controllers/admin/base_controller.rb
+  app/controllers/admin/items_controller.rb
+  app/views/layouts/admin.html.erb
+```
 
-This generator will create  controller for specified resource, class which contain settings related with resource placed in `lib/namespace` and layout. Depending on the options it can also create BaseController. If you want to use our helpers you have to generate this BaseController.
+If you want to learn more about the generator check its [documentation](https://github.com/wilqq/admin_bits/docs/generator.md).
+
+
 
 ### Resource class
 
