@@ -29,7 +29,6 @@ class AdminBitsGenerator < Rails::Generators::Base
   self.source_paths << File.join(File.dirname(__FILE__), 'templates')
 
   def create_layout
-    binding.pry
     template "layout.html.erb", "app/views/layouts/#{ layout }.html.erb"
   end
 
@@ -48,7 +47,7 @@ class AdminBitsGenerator < Rails::Generators::Base
   end
 
   def add_routing
-    if options[:add_routing]
+    if options[:routing]
       route("namespace :#{namespace} do \n    resources :#{resource} \n  end")
     end
   end
