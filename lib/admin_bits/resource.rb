@@ -3,12 +3,12 @@ module AdminBits
     include AdminBits
     include DefaultResourceMethods
 
-    attr_reader :ordering_methods, :filter_methods
+    attr_reader :ordering_methods, :filter_methods, :params_handler
 
     def initialize(params)
       include_sorting_class
       @params = params
-      self.class.declare_resource
+      @params_handler = ParamsHandler.new(self, params)
       determine_ordering_methods
       @filter_methods = self.class.filter_methods
     end

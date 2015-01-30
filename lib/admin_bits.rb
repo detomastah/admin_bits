@@ -11,23 +11,7 @@ module AdminBits
 
 
   def self.included(base)
-    base.extend(ClassMethods)
     base.send :attr_reader, :params
     base.send :include, Rails.application.routes.url_helpers
-  end
-
-  module ClassMethods
-    def declare_resource
-
-      ActionView::Base.send :include, Helpers
-
-      define_method :params_handler do
-        ParamsHandler.new(self, params)
-      end
-
-      define_method :admin_filter do |name|
-        params_handler.filter_params[name]
-      end
-    end
   end
 end

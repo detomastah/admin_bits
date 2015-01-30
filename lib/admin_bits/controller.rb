@@ -3,6 +3,7 @@ module AdminBits
     def self.included(base)
       base.send :helper_method, :params_handler, :admin_filter
       base.send :delegate, :params_handler, to: :resource
+      base.send :helper, AdminBits::Helpers
     end
 
     def admin_filter(*args)
