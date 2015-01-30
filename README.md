@@ -48,7 +48,7 @@ If you want to learn more about the generator check its [documentation](https://
 
 Check out your `item_resource` class for some hints on how you can customize your Resource. This class contain settings associated with the items resource. You can also check [documentation](https://github.com/wilqq/admin_bits/wiki/Resource-class) for more information.
 
-You will find `resource` method in resource items_controller.
+You will find `resource` private method in resource items_controller.
 
 ```ruby
 def resource
@@ -59,7 +59,9 @@ end
 You can use this for example in your index action:
 
 ```ruby
-@items = resource.fetch_for_index
+def index
+  @items = resource.fetch_for_index
+end
 ```
 
 
