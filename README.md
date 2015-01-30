@@ -44,9 +44,9 @@ this should add route `admin/items` and give you files:
   app/views/layouts/admin.html.erb
 ```
 
-If you want to learn more about the generator check its [documentation](https://github.com/wilqq/admin_bits/docs/generator.md).
+If you want to learn more about the generator check its [documentation](https://github.com/wilqq/admin_bits/wiki/Generator).
 
-Check out your `item_resource` class for some hints on how you can customize your Resource. This class contain settings associated with the items resource. You can also check [documentation](https://github.com/wilqq/admin_bits/docs/resource_class.md) for more information.
+Check out your `item_resource` class for some hints on how you can customize your Resource. This class contain settings associated with the items resource. You can also check [documentation](https://github.com/wilqq/admin_bits/wiki/Resource-class) for more information.
 
 You will find `resource` method in resource items_controller.
 
