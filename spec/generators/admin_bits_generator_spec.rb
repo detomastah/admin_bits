@@ -75,7 +75,7 @@ describe AdminBitsGenerator do
       destination = File.join(destination_root, 'config')
       FileUtils.mkdir_p(destination)
       FileUtils.cp routes, destination
-      run_generator %w(objects)
+      run_generator %w(products)
     end
 
     it 'has correct syntax' do
@@ -83,7 +83,7 @@ describe AdminBitsGenerator do
     end
 
     it 'has proper content' do
-      expect(subject).to contain("namespace :admin do \n    resources :objects \n  end")
+      expect(subject).to contain("namespace :admin do \n    resources :products \n  end")
     end
   end
 end

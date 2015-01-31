@@ -75,9 +75,14 @@ class AdminBitsGenerator < Rails::Generators::Base
   end
 
   def attribute_names
-    names = eval(resource.singularize.camelcase).attribute_names
-    names.delete_if do |attribute|
-      attribute[-3..-1] == '_id'
+    raw_resource = eval(resource.singularize.camelcase)
+    if raw_resource.class == Class
+      names = raw_resource.attribute_names
+      names.delete_if do |attribute|
+        attribute[-3..-1] == '_id'
+      end
+    else
+      []
     end
   end
 end
