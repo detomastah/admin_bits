@@ -40,5 +40,9 @@ module AdminBits
     def admin_date_filter(attribute)
       text_field_tag "filters[#{attribute}]", params_handler.filter_params[attribute], :class => "datepicker"
     end
+
+    def current_resource
+      resource.resource_name
+    end
   end
 end

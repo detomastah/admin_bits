@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= "Admin bits" %></title>
+    <%= stylesheet_link_tag "admin_bits", media: 'all' %>
+  </head>
+  <body>
+    <div class="content">
+      <div class="head">
+        <h2>AdminBits</h2>
+      </div>
+      <h2><%= current_resource %></h2>
+
+      <%= yield %>
+    <div>
+  </body>
+</head>
+

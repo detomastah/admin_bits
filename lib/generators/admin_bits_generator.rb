@@ -28,10 +28,6 @@ class AdminBitsGenerator < Rails::Generators::Base
 
   self.source_paths << File.join(File.dirname(__FILE__), 'templates')
 
-  def create_layout
-    template "layout.html.erb", "app/views/layouts/#{ layout }.html.erb"
-  end
-
   def create_controller
     template "controller.rb.erb", "app/controllers/#{ namespace }/#{ controller_name }.rb"
   end
@@ -52,6 +48,14 @@ class AdminBitsGenerator < Rails::Generators::Base
     end
   end
 
+  def create_layout
+    template "layout.html.erb", "app/views/layouts/#{ layout }.html.erb"
+  end
+
+  def create_index
+    template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb"
+  end
+
   protected
 
   def layout
@@ -68,5 +72,12 @@ class AdminBitsGenerator < Rails::Generators::Base
 
   def controller_name
     (resource + '_controller')
+  end
+
+  def attribute_names
+    names = eval(resource.singularize.camelcase).attribute_names
+    names.delete_if do |attribute|
+      attribute[-3..-1] == '_id'
+    end
   end
 end

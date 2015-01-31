@@ -73,5 +73,9 @@ module AdminBits
         @default_order || []
       end
     end
+
+    def resource_name
+      resource.to_s.pluralize
+    end
   end
 end

@@ -23,5 +23,9 @@ Dummy::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   config.eager_load = false
+
+  config.assets.debug = true
+
+  config.assets.raise_runtime_errors = true
 end
 
