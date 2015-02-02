@@ -70,7 +70,7 @@ def clear_resource_class_variables(klass)
   variables = [:@ordering_methods, :@filter_methods, :@default_order]
   variables.each do |variable|
     if klass.instance_variable_get(variable)
-      klass.remove_instance_variable(variable)
+      klass.send :remove_instance_variable, variable
     end
   end
 end

@@ -5,6 +5,7 @@ require "active_record/railtie"
 require "action_controller/railtie"
 require "action_view/railtie"
 require "action_mailer/railtie"
+require "sprockets/railtie"
 
 Bundler.require
 require "admin_bits"

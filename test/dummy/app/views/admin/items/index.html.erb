@@ -1,29 +1,53 @@
-<div id="filtering">
-  <%= admin_form :method => :get do %>
-    Name: <%= admin_text_filter :having_name %>
-    <br>
-    Price from <%= text_field_tag("filters[price_between][from]", admin_filter(:price_between, :from)) %>
-    and <%= text_field_tag("filters[price_between][to]", admin_filter(:price_between, :to)) %>
-
-    <button>Filter!</button>
-  <% end %>
-</div>
-
-<table>
+<table class="admin-table">
   <thead>
-    <th>
-      <%= admin_link(:by_name, "Name") %>
-      <%= admin_link(:by_price, "Total price") %>
-    </th>
+    <tr> 
+      <th>
+        <%= admin_link(:by_id, "id") %>
+      </th> 
+      <th>
+        <%= admin_link(:by_name, "name") %>
+      </th> 
+      <th>
+        <%= admin_link(:by_price, "price") %>
+      </th> 
+      <th>
+        <%= admin_link(:by_description, "description") %>
+      </th> 
+      <th>
+        <%= admin_link(:by_created_at, "created_at") %>
+      </th> 
+      <th>
+        <%= admin_link(:by_updated_at, "updated_at") %>
+      </th> 
+      <th>
+        Actions
+      </th>
+    </tr>
   </thead>
   <tbody>
-    <% @items.each do |item| %>
-      <tr>
+    <% @items.each do |obj| %>
+      <tr> 
         <td>
-          <%= item.name %>
-        </td>
+          <%= obj.id %>
+        </td> 
         <td>
-          <%= item.price %>
+          <%= obj.name %>
+        </td> 
+        <td>
+          <%= obj.price %>
+        </td> 
+        <td>
+          <%= obj.description %>
+        </td> 
+        <td>
+          <%= obj.created_at %>
+        </td> 
+        <td>
+          <%= obj.updated_at %>
+        </td> 
+        <td>
+          <%= link_to 'Edit', edit_admin_item_path(obj) %>
+          <%= button_to 'Delete', admin_item_path(obj), method: :delete, class: 'button alert', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>

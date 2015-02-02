@@ -1,5 +1,5 @@
 module AdminBits
-  class AdminResource
+  class ParamsHandler
     attr_reader :options, :resource, :request_params
 
     def initialize(options, request_params = {})
@@ -18,9 +18,7 @@ module AdminBits
         reject do |k,v|
           ["action", "controller", "commit"].include?(k) || v.blank?
         end
-      if request_params[:order]
-        request_params[:order]
-      else
+      unless request_params[:order]
         request_params[:order] ||= default_order
         request_params[:asc]   ||= default_asc
       end
@@ -82,14 +80,5 @@ module AdminBits
     def get_direction
       request_params[:asc] != "true" ? "DESC" : "ASC"
     end
-
-    # def convert_mapping(mapping)
-    #   # Check if mapping was provided
-    #   raise "No order mapping specified for '#{order}'" if mapping.blank?
-    #   # Convert to array in order to simplify processing
-    #   mapping = [mapping] if mapping.is_a?(String)
-    #   # Convert to SQL form
-    #   mapping.map {|m| "#{m} #{get_direction}"}.join(", ")
-    # end
   end
 end

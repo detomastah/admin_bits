@@ -1,4 +1,4 @@
-class AdminBits::AdminResource::Paginator
+class AdminBits::ParamsHandler::Paginator
   attr_reader :resource, :page, :options
 
   def initialize(resource, page, options)
