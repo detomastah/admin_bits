@@ -49,18 +49,17 @@ class AdminBitsGenerator < Rails::Generators::Base
   end
 
   def create_layout
-    template "layout.html.erb", "app/views/layouts/#{ layout }.html.erb"
+    if options[:layout]
+      template "layout.html.erb", "app/views/layouts/admin_bits/layout.html.erb"
+      template 'stylesheets.css', 'app/assets/stylesheets/admin_bits.css'
+    end
   end
 
   def create_index
-    template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb"
+    template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb" if options[:layout]
   end
 
   protected
-
-  def layout
-    options[:layout]
-  end
 
   def namespace
     options[:namespace]

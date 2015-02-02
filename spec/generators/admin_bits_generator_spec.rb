@@ -65,6 +65,48 @@ describe AdminBitsGenerator do
         expect(subject).to have_method :resource
       end
     end
+
+    describe 'layout' do
+      subject { file('app/views/layouts/admin_bits/layout.html.erb') }
+
+      it 'exist' do
+        expect(subject).to exist
+      end
+
+      it 'has correct syntax' do
+        expect(subject).to have_correct_syntax
+      end
+
+      it 'has proper content' do
+        expect(subject).to contain '<%= current_resource %>'
+        expect(subject).to contain '<%= yield %>'
+      end
+    end
+
+    describe 'stylesheets' do
+      subject { file('app/assets/stylesheets/admin_bits.css') }
+
+      it 'exist' do
+        expect(subject).to exist
+      end
+    end
+
+    describe 'index view' do
+      subject { file('app/views/admin/items/index.html.erb') }
+
+      it 'exist' do
+        expect(subject).to exist
+      end
+
+      it 'has correct syntax' do
+        expect(subject).to have_correct_syntax
+      end
+
+      it 'has proper content' do
+        expect(subject).to contain '<% @items.each do |obj| %>'
+        expect(subject).to contain '<%= admin_link(:by_name, "name") %>'
+      end
+    end
   end
 
   describe 'routes' do

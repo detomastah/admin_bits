@@ -4,6 +4,7 @@ module AdminBits
       base.send :helper_method, :params_handler, :admin_filter, :resource
       base.send :delegate, :params_handler, to: :resource
       base.send :helper, AdminBits::Helpers
+      base.send :layout, 'admin_bits/layout'
     end
 
     def admin_filter(*args)
