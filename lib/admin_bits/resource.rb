@@ -3,12 +3,11 @@ module AdminBits
     include AdminBits
     include DefaultResourceMethods
 
-    attr_reader :ordering_methods, :filter_methods, :params_handler
+    attr_reader :ordering_methods, :filter_methods
 
     def initialize(params)
       include_sorting_class
       @params = params
-      @params_handler = ParamsHandler.new(self, params)
       determine_ordering_methods
       @filter_methods = self.class.filter_methods
     end
@@ -28,9 +27,9 @@ module AdminBits
 
     def include_sorting_class
       if resource_class.ancestors.include? ActiveRecord::Base
-        self.class.include ActiveRecordSort
+        self.class.send :include, ActiveRecordSort
       else
-        self.class.include PlainSort
+        self.class.send :include, PlainSort
       end
     end
 
@@ -76,6 +75,10 @@ module AdminBits
 
     def resource_name
       resource.to_s.pluralize
+    end
+
+    def params_handler
+      @params_handler ||= ParamsHandler.new(self, params)
     end
   end
 end
