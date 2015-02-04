@@ -5,12 +5,13 @@ module AdminBits
       link_content = name.html_safe
       if params_handler.request_params[:order] == attrib.to_s
         ascending = params_handler.request_params[:asc] == "true" ? true : false
-        klass = ascending ? "sorting_asc" : "sorting_desc"
+        klass = ascending ? "sort_asc" : "sort_desc"
         ascending = !ascending
       else
         klass = nil
         ascending = true
       end
+
       link_to link_content, params_handler.url(:order => attrib, :asc => ascending.to_s), :class => klass
     end
 
