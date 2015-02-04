@@ -48,15 +48,16 @@ class AdminBitsGenerator < Rails::Generators::Base
     end
   end
 
-  def create_layout
-    if options[:layout]
+  def create_views
+    return unless options[:layout]
+
+    if admin_bits_lte?
+      Rails::Generators.invoke('admin_bits_lte', [resource, "--namespace=#{namespace}"])
+    else
       template "layout.html.erb", "app/views/layouts/admin_bits/layout.html.erb"
       template 'stylesheets.css', 'app/assets/stylesheets/admin_bits.css'
+      template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb"
     end
-  end
-
-  def create_index
-    template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb" if options[:layout]
   end
 
   protected
@@ -83,5 +84,10 @@ class AdminBitsGenerator < Rails::Generators::Base
     else
       []
     end
+  end
+
+  def admin_bits_lte?
+    Rails::Generators.lookup!
+    Rails::Generators.subclasses.map(&:to_s).include? 'AdminBitsLteGenerator'
   end
 end
