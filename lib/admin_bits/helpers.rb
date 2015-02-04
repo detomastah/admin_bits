@@ -11,7 +11,6 @@ module AdminBits
         klass = nil
         ascending = true
       end
-      binding.pry
       link_to link_content, params_handler.url(:order => attrib, :asc => ascending.to_s), :class => klass
     end
 
