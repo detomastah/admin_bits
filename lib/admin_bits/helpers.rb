@@ -34,7 +34,7 @@ module AdminBits
     end
 
     def admin_text_filter(attribute)
-      text_field_tag "filters[#{attribute}]", params_handler.filter_params[attribute]
+      text_field_tag "filters[#{attribute}]", params_handler.filter_params[attribute], class: 'form-control'
     end
 
     def admin_date_filter(attribute)
