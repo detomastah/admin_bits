@@ -54,13 +54,27 @@ class AdminBitsGenerator < Rails::Generators::Base
     if admin_bits_lte?
       Rails::Generators.invoke('admin_bits_lte', [resource, "--namespace=#{namespace}"])
     else
-      template "layout.html.erb", "app/views/layouts/admin_bits/layout.html.erb"
-      template 'stylesheets.css', 'app/assets/stylesheets/admin_bits.css'
-      template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb"
+      add_assets_initializer
+      add_templates
     end
   end
 
   protected
+
+  def add_templates
+    template "layout.html.erb", "app/views/layouts/admin_bits/layout.html.erb"
+    template 'stylesheets.css', 'app/assets/stylesheets/admin_bits.css'
+    template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb"
+  end
+
+  def add_assets_initializer
+    unless Rails.application.config.assets.precompile.include?('admin_bits.css')
+      content = 'Rails.application.config.assets.precompile += %w( admin_bits.css )'
+      path = 'config/initializers/assets.rb'
+
+      File.write(path, content, mode: 'a')
+    end
+  end
 
   def namespace
     options[:namespace]
