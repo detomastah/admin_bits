@@ -73,7 +73,7 @@ module AdminBits
       end
 
       def subclasses
-        Dir['lib/**/*_resource.rb'].each {|file| load file }
+        Dir['lib/**/*_resource.rb'].each {|file| require_dependency file }
         super
       end
 
@@ -82,7 +82,7 @@ module AdminBits
       end
 
       def name
-        self.inspect.demodulize
+        self.inspect.demodulize.gsub('Resource', '').pluralize
       end
     end
 

@@ -44,5 +44,17 @@ module AdminBits
     def current_resource
       resource.resource_name
     end
+
+    def all_resources
+      AdminBits::Resource.subclasses
+    end
+
+    def resource_nav_link(r)
+      class_name = (r == resource.class) ? 'active' : ''
+
+      content_tag(:li) do
+        link_to(r.name, r.path, class: class_name)
+      end
+    end
   end
 end
