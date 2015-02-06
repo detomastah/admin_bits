@@ -81,13 +81,13 @@ module AdminBits
         self.new({}).path
       end
 
-      def name
+      def resource_name
         self.inspect.demodulize.gsub('Resource', '').pluralize
       end
     end
 
     def resource_name
-      resource.to_s.pluralize
+      self.class.resource_name
     end
 
     def params_handler

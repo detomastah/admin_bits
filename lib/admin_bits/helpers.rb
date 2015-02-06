@@ -53,7 +53,7 @@ module AdminBits
       class_name = (r == resource.class) ? 'active' : ''
 
       content_tag(:li) do
-        link_to(r.name, r.path, class: class_name)
+        link_to(r.resource_name, r.path, class: class_name)
       end
     end
   end
