@@ -51,9 +51,11 @@ class AdminBitsGenerator < Rails::Generators::Base
   def create_views
     return unless options[:layout]
 
-    if admin_bits_lte?
-      Rails::Generators.invoke('admin_bits_lte', [resource, "--namespace=#{namespace}"])
-    else
+    params = { 'resource' => resource }
+    params.merge!(options)
+
+    unless AdminBits::Extentions.try(:call_generator, params)
+      binding.pry
       add_assets_initializer
       add_templates
     end
@@ -98,10 +100,5 @@ class AdminBitsGenerator < Rails::Generators::Base
     else
       []
     end
-  end
-
-  def admin_bits_lte?
-    Rails::Generators.lookup!
-    Rails::Generators.subclasses.map(&:to_s).include? 'AdminBitsLteGenerator'
   end
 end
