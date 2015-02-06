@@ -71,6 +71,19 @@ module AdminBits
       def default_order
         @default_order || []
       end
+
+      def subclasses
+        Dir['lib/**/*_resource.rb'].each {|file| load file }
+        super
+      end
+
+      def path
+        self.new({}).path
+      end
+
+      def name
+        self.inspect.demodulize
+      end
     end
 
     def resource_name
