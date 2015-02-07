@@ -99,12 +99,34 @@ a {
       background-color: #368a55; }
     button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
       color: #FFFFFF; }
+  .button.new-item {
+    margin: 10px 20px;
+    background-color: #a0d3e8;
+    border-color: #61b6d9;
+    color: #333333; }
+    button.new-item:hover, button.new-item:focus, .button.new-item:hover, .button.new-item:focus {
+      background-color: #61b6d9; }
+    button.new-item:hover, button.new-item:focus, .button.new-item:hover, .button.new-item:focus {
+      color: #FFFFFF; }
+  .button#submit {
+    margin: 15px 0;
+  }
 
 label {
   display: block;
   width: 100px; }
 
-.flash_notice {
+.flash {
   margin: 10px 0;
-  padding: 10px 20px;
-  background-color: #33CC00; }
+  padding: 10px 20px; }
+  .flash_notice {
+    background-color: #33CC00; }
+  .flash_alert {
+    background-color: #f04124; }
+
+.error {
+  color: #f04124;
+  margin: 10px; }
+
+.pull-right {
+  float: right; }

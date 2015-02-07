@@ -1,6 +1,7 @@
+<%%= link_to 'New <%= klass %>', new_<%= resource_path %>, class: 'button info pull-right new-item' %>
+
 <h2><%%= current_resource %></h2>
 
-<%%= link_to 'New <%= klass %>', new_<%= resource_path %> %>
 <table class="admin-table">
   <thead>
     <tr> <% attribute_names.each do |attribute| %>
