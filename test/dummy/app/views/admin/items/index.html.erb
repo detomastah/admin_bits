@@ -1,25 +1,27 @@
+<h2><%= current_resource %></h2>
+
 <%= link_to 'New Item', new_admin_item_path %>
 <table class="admin-table">
   <thead>
-    <tr>
+    <tr> 
       <th>
         <%= admin_link(:by_id, "id") %>
-      </th>
+      </th> 
       <th>
         <%= admin_link(:by_name, "name") %>
-      </th>
+      </th> 
       <th>
         <%= admin_link(:by_price, "price") %>
-      </th>
+      </th> 
       <th>
         <%= admin_link(:by_description, "description") %>
-      </th>
+      </th> 
       <th>
         <%= admin_link(:by_created_at, "created_at") %>
-      </th>
+      </th> 
       <th>
         <%= admin_link(:by_updated_at, "updated_at") %>
-      </th>
+      </th> 
       <th>
         Actions
       </th>
@@ -27,25 +29,25 @@
   </thead>
   <tbody>
     <% @items.each do |obj| %>
-      <tr>
+      <tr> 
         <td>
           <%= obj.id %>
-        </td>
+        </td> 
         <td>
           <%= obj.name %>
-        </td>
+        </td> 
         <td>
           <%= obj.price %>
-        </td>
+        </td> 
         <td>
           <%= obj.description %>
-        </td>
+        </td> 
         <td>
           <%= obj.created_at %>
-        </td>
+        </td> 
         <td>
           <%= obj.updated_at %>
-        </td>
+        </td> 
         <td>
           <%= link_to 'Edit', edit_admin_item_path(obj) %>
           <%= button_to 'Delete', admin_item_path(obj), method: :delete, class: 'button alert', data: { confirm: 'Are you sure?' } %>

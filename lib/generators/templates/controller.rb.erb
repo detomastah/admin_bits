@@ -1,5 +1,5 @@
 class <%= namespace.camelcase %>::<%= controller_name.camelcase %> <%= '<' %> Admin::BaseController
-  <% klass = resource.singularize.camelcase %>
+
   def index
     @<%= resource %> = resource.fetch_for_index
   end
@@ -13,7 +13,7 @@ class <%= namespace.camelcase %>::<%= controller_name.camelcase %> <%= '<' %> Ad
 
     if @<%= resource.singularize %>.save
       flash[:notice] = "You have successfully created <%= resource.singularize %>"
-      redirect_to <%= namespace %>_<%= resource %>_path
+      redirect_to <%= resources_path %>
     else
       flash[:alert] = "<%= resource.singularize %> can't be created"
       render 'new'
@@ -21,11 +21,27 @@ class <%= namespace.camelcase %>::<%= controller_name.camelcase %> <%= '<' %> Ad
   end
 
   def edit
-    @<%= resource %> = <%= klass %>.find(params[:id])
+    @<%= resource.singularize %> = <%= klass %>.find(params[:id])
   end
 
   def update
-    @<%= resource %> = <%= klass %>.find(params[:id])
+    @<%= resource.singularize %> = <%= klass %>.find(params[:id])
+
+    if @<%= resource.singularize %>.update_attributes(<%= resource.singularize %>_params)
+      flash[:notice] = "You have successfully updated <%= resource.singularize %>"
+      redirect_to <%= resources_path %>
+    else
+      flash[:alert] = "<%= resource.singularize %> can't be updated"
+      render :edit
+    end
+  end
+
+  def destroy
+    @<%= resource.singularize %> = <%= klass %>.find(params[:id])
+
+    @<%= resource.singularize %>.destroy
+    flash[:notice] = "You have successfully deleted <%= resource.singularize %>"
+    redirect_to <%= resources_path %>
   end
 
   private
@@ -35,6 +51,6 @@ class <%= namespace.camelcase %>::<%= controller_name.camelcase %> <%= '<' %> Ad
   end
 
   def <%= resource.singularize %>_params
-    params.require(:<%= resource.singularize %>).permit(<%= permit_attributes %>)
+    params.require(:<%= resource.singularize %>).permit(<%= permit_attributes_string %>)
   end
 end

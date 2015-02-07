@@ -1,0 +1,4 @@
+<%%= simple_form_for [:admin, @<%= resource.singularize %>] do |f| %> <% permit_attributes.each do |attribute| %>
+    <%%= f.input :<%= attribute %> %> <% end %>
+  <%%= f.button :submit, class: 'button success' %>
+<%% end %>

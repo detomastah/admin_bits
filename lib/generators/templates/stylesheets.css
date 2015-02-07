@@ -90,4 +90,21 @@ a {
       background-color: #cf2a0e; }
     .button.alert:hover, .button.alert:focus {
       color: #FFFFFF; }
-}
+
+  .button.success {
+    background-color: #43AC6A;
+    border-color: #368a55;
+    color: #FFFFFF; }
+    button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
+      background-color: #368a55; }
+    button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
+      color: #FFFFFF; }
+
+label {
+  display: block;
+  width: 100px; }
+
+.flash_notice {
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #33CC00; }

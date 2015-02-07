@@ -55,7 +55,6 @@ class AdminBitsGenerator < Rails::Generators::Base
     params.merge!(options)
 
     unless AdminBits::Extentions.try(:call_generator, params)
-      binding.pry
       add_assets_initializer
       add_templates
     end
@@ -64,9 +63,13 @@ class AdminBitsGenerator < Rails::Generators::Base
   protected
 
   def add_templates
-    template "layout.html.erb", "app/views/layouts/admin_bits/layout.html.erb"
-    template 'stylesheets.css', 'app/assets/stylesheets/admin_bits.css'
-    template "index.html.erb", "app/views/#{namespace}/#{resource}/index.html.erb"
+    copy_file 'views/layout.html.erb', 'app/views/layouts/admin_bits/layout.html.erb'
+    copy_file 'stylesheets.css', 'app/assets/stylesheets/admin_bits.css'
+    copy_file 'views/messages.html.erb', 'app/views/layouts/admin_bits/_messages.html.erb'
+    template 'views/index.html.erb', "app/views/#{namespace}/#{resource}/index.html.erb"
+    template 'views/new.html.erb', "app/views/#{namespace}/#{resource}/new.html.erb"
+    template 'views/edit.html.erb', "app/views/#{namespace}/#{resource}/edit.html.erb"
+    template 'views/form.html.erb', "app/views/#{namespace}/#{resource}/_form.html.erb"
   end
 
   def add_assets_initializer
@@ -76,6 +79,14 @@ class AdminBitsGenerator < Rails::Generators::Base
 
       File.write(path, content, mode: 'a')
     end
+  end
+
+  def resources_path
+    "#{namespace}_#{resource}_path"
+  end
+
+  def resource_path
+    "#{namespace}_#{resource.singularize}_path"
   end
 
   def namespace
@@ -97,9 +108,12 @@ class AdminBitsGenerator < Rails::Generators::Base
     end
   end
 
+  def permit_attributes_string
+    permit_attributes.map(&:to_sym).to_s[1..-2]
+  end
+
   def permit_attributes
-    names = all_attributes - ['id', 'created_at', 'updated_at']
-    names.map(&:to_sym).to_s[1..-2]
+    all_attributes - ['id', 'created_at', 'updated_at']
   end
 
   def all_attributes
@@ -109,5 +123,9 @@ class AdminBitsGenerator < Rails::Generators::Base
     else
       []
     end
+  end
+
+  def klass
+    resource.singularize.camelcase
   end
 end

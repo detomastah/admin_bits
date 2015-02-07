@@ -1,3 +1,6 @@
+<h2><%%= current_resource %></h2>
+
+<%%= link_to 'New <%= klass %>', new_<%= resource_path %> %>
 <table class="admin-table">
   <thead>
     <tr> <% attribute_names.each do |attribute| %>
@@ -16,8 +19,8 @@
           <%%= obj.<%= attribute%> %>
         </td> <% end %>
         <td>
-          <%%= link_to 'Edit', edit_admin_item_path(obj) %>
-          <%%= button_to 'Delete', admin_item_path(obj), method: :delete, class: 'button alert', data: { confirm: 'Are you sure?' } %>
+          <%%= link_to 'Edit', edit_<%= resource_path %>(obj) %>
+          <%%= button_to 'Delete', <%= resource_path %>(obj), method: :delete, class: 'button alert', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <%% end %>

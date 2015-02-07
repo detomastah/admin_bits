@@ -78,7 +78,6 @@ describe AdminBitsGenerator do
       end
 
       it 'has proper content' do
-        expect(subject).to contain '<%= current_resource %>'
         expect(subject).to contain '<%= yield %>'
       end
     end

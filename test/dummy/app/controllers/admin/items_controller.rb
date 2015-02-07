@@ -1,5 +1,5 @@
 class Admin::ItemsController < Admin::BaseController
-  
+
   def index
     @items = resource.fetch_for_index
   end
@@ -21,11 +21,27 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def edit
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def update
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
+
+    if @item.update_attributes(item_params)
+      flash[:notice] = "You have successfully updated item"
+      redirect_to admin_items_path
+    else
+      flash[:alert] = "item can't be updated"
+      render :edit
+    end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+
+    @item.destroy
+    flash[:notice] = "You have successfully deleted item"
+    redirect_to admin_items_path
   end
 
   private
