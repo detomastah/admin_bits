@@ -72,11 +72,6 @@ module AdminBits
         @default_order || []
       end
 
-      def subclasses
-        Dir['lib/**/*_resource.rb'].each {|file| require_dependency file }
-        super
-      end
-
       def path
         self.new({}).path
       end
