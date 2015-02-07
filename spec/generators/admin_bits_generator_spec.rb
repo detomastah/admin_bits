@@ -120,7 +120,7 @@ describe AdminBitsGenerator do
           expect(subject).to contain '<%= f.input :name %>'
           expect(subject).to contain '<%= f.input :price %>'
           expect(subject).to contain '<%= f.input :description %>'
-          expect(subject).to contain "<%= f.button :submit, class: 'button success' %>"
+          expect(subject).to contain "<%= f.button :submit, class: 'button success', id: 'submit' %>"
         end
       end
     end

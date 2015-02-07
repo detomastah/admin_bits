@@ -9,6 +9,7 @@ module AdminBits
   autoload :PlainSort,               'admin_bits/sorting/plain_sort'
   autoload :Controller,              'admin_bits/controller'
   autoload :Extentions,              'admin_bits/extentions'
+  autoload :GeneratorHelpers,        'generators/generator_helpers'
 
 
   def self.included(base)
