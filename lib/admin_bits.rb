@@ -8,6 +8,8 @@ module AdminBits
   autoload :ActiveRecordSort,        'admin_bits/sorting/active_record_sort'
   autoload :PlainSort,               'admin_bits/sorting/plain_sort'
   autoload :Controller,              'admin_bits/controller'
+  autoload :Extentions,              'admin_bits/extentions'
+  autoload :GeneratorHelpers,        'generators/generator_helpers'
 
 
   def self.included(base)

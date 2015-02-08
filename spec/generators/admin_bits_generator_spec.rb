@@ -60,26 +60,68 @@ describe AdminBitsGenerator do
       it 'has proper method and content' do
         expect(subject).to contain /class Admin::ItemsController < Admin::BaseController/
         expect(subject).to have_method :index
+        expect(subject).to have_method :new
+        expect(subject).to have_method :create
         expect(subject).to have_method :edit
         expect(subject).to have_method :update
+        expect(subject).to have_method :destroy
         expect(subject).to have_method :resource
+        expect(subject).to have_method :item_params
       end
     end
 
-    describe 'layout' do
-      subject { file('app/views/layouts/admin_bits/layout.html.erb') }
+    describe 'views' do
+      describe 'layout' do
+        subject { file('app/views/layouts/admin_bits/layout.html.erb') }
 
-      it 'exist' do
-        expect(subject).to exist
+        it 'exist' do
+          expect(subject).to exist
+        end
+
+        it 'has correct syntax' do
+          expect(subject).to have_correct_syntax
+        end
+
+        it 'has proper content' do
+          expect(subject).to contain '<%= yield %>'
+        end
       end
 
-      it 'has correct syntax' do
-        expect(subject).to have_correct_syntax
+      describe 'index' do
+        subject { file('app/views/admin/items/index.html.erb') }
+
+        it 'exist' do
+          expect(subject).to exist
+        end
+
+        it 'has correct syntax' do
+          expect(subject).to have_correct_syntax
+        end
+
+        it 'has proper content' do
+          expect(subject).to contain '<% @items.each do |obj| %>'
+          expect(subject).to contain '<%= admin_link(:by_name, "name") %>'
+        end
       end
 
-      it 'has proper content' do
-        expect(subject).to contain '<%= current_resource %>'
-        expect(subject).to contain '<%= yield %>'
+      describe 'form' do
+        subject { file('app/views/admin/items/_form.html.erb') }
+
+        it 'exist' do
+          expect(subject).to exist
+        end
+
+        it 'has correct syntax' do
+          expect(subject).to have_correct_syntax
+        end
+
+        it 'has proper content' do
+          expect(subject).to contain '<%= simple_form_for [:admin, @item] do |f| %> '
+          expect(subject).to contain '<%= f.input :name %>'
+          expect(subject).to contain '<%= f.input :price %>'
+          expect(subject).to contain '<%= f.input :description %>'
+          expect(subject).to contain "<%= f.button :submit, class: 'button success', id: 'submit' %>"
+        end
       end
     end
 
@@ -88,23 +130,6 @@ describe AdminBitsGenerator do
 
       it 'exist' do
         expect(subject).to exist
-      end
-    end
-
-    describe 'index view' do
-      subject { file('app/views/admin/items/index.html.erb') }
-
-      it 'exist' do
-        expect(subject).to exist
-      end
-
-      it 'has correct syntax' do
-        expect(subject).to have_correct_syntax
-      end
-
-      it 'has proper content' do
-        expect(subject).to contain '<% @items.each do |obj| %>'
-        expect(subject).to contain '<%= admin_link(:by_name, "name") %>'
       end
     end
   end
@@ -126,6 +151,19 @@ describe AdminBitsGenerator do
 
     it 'has proper content' do
       expect(subject).to contain("namespace :admin do \n    resources :products \n  end")
+    end
+  end
+
+  describe 'extentions' do
+    before do
+      allow(AdminBits::Extentions).to receive(:call_generator).and_return(true)
+      run_generator %w(items --skip-routing)
+    end
+
+    it "doesn't create view files" do
+      expect(file('app/views/admin/items/index.html.erb')).to_not exist
+      expect(file('app/views/admin/items/_form.html.erb')).to_not exist
+      expect(file('app/assets/stylesheets/admin_bits.css')).to_not exist
     end
   end
 end

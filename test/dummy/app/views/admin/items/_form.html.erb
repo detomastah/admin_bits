@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin, @item] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :order_id %>
+  <%= f.button :submit, class: 'button success', id: 'submit' %>
+<% end %>

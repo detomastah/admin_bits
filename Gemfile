@@ -5,6 +5,9 @@ gem "capybara", ">= 0.4.0"
 gem "sqlite3"
 gem "kaminari"
 gem "simple_form"
+# gem 'admin_bits', path: '/home/mateusz/projekty/admin_bits'
+# gem 'admin_bits_lte', path: '/home/mateusz/projekty/admin_bits_bootstrap'
+
 
 group :test, :development do
   gem "rspec-rails"

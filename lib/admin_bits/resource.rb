@@ -71,10 +71,18 @@ module AdminBits
       def default_order
         @default_order || []
       end
+
+      def path
+        self.new({}).path
+      end
+
+      def resource_name
+        self.inspect.demodulize.gsub('Resource', '').pluralize
+      end
     end
 
     def resource_name
-      resource.to_s.pluralize
+      self.class.resource_name
     end
 
     def params_handler
