@@ -57,8 +57,9 @@ class AdminBitsGenerator < Rails::Generators::Base
     params.merge!(options)
 
     unless AdminBits::Extentions.try(:call_generator, params)
-      add_assets_initializer
       add_templates
+      add_assets_initializer
+      add_assets
     end
   end
 
@@ -66,7 +67,6 @@ class AdminBitsGenerator < Rails::Generators::Base
 
   def add_templates
     copy_file 'views/layout.html.erb', 'app/views/layouts/admin_bits/layout.html.erb'
-    copy_file 'stylesheets.css', 'app/assets/stylesheets/admin_bits.css'
     copy_file 'views/messages.html.erb', 'app/views/layouts/admin_bits/_messages.html.erb'
     template 'views/index.html.erb', "app/views/#{namespace}/#{resource}/index.html.erb"
     template 'views/new.html.erb', "app/views/#{namespace}/#{resource}/new.html.erb"
@@ -74,9 +74,15 @@ class AdminBitsGenerator < Rails::Generators::Base
     template 'views/form.html.erb', "app/views/#{namespace}/#{resource}/_form.html.erb"
   end
 
+  def add_assets
+    copy_file 'assets/stylesheets/admin_bits.css', 'app/assets/stylesheets/admin_bits.css'
+    copy_file 'assets/javascripts/admin_bits.js', 'app/assets/javascripts/admin_bits.js'
+    directory 'assets/images', 'app/assets/images/admin_bits'
+  end
+
   def add_assets_initializer
-    unless Rails.application.config.assets.precompile.include?('admin_bits.css')
-      content = 'Rails.application.config.assets.precompile += %w( admin_bits.css )'
+    if (['admin_bits.css', 'admin_bits.js'] -  Rails.application.config.assets.precompile).any?
+      content = 'Rails.application.config.assets.precompile += %w(admin_bits.css admin_bits.js)'
       path = 'config/initializers/assets.rb'
 
       File.write(path, content, mode: 'a')

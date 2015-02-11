@@ -100,8 +100,7 @@ a {
     button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
       color: #FFFFFF; }
   .button.new-item {
-    margin: 10px 20px; }
-  .button.info {
+    margin: 10px 20px;
     background-color: #a0d3e8;
     border-color: #61b6d9;
     color: #333333; }
@@ -110,11 +109,8 @@ a {
     button.new-item:hover, button.new-item:focus, .button.new-item:hover, .button.new-item:focus {
       color: #FFFFFF; }
   .button#submit {
-    margin: 15px 0; }
-  .button.controll {
-    margin-right: 10px;
-    float: right;
-    width: 80%; }
+    margin: 15px 0;
+  }
 
 label {
   display: block;
@@ -134,3 +130,12 @@ label {
 
 .pull-right {
   float: right; }
+
+.sorting {
+  background: #595A5C url(/assets/sort_both.png) no-repeat center right; }
+
+.sorting_asc {
+  background: #595A5C url(/assets/sort_asc.png) no-repeat center right; }
+
+.sorting_desc {
+  background: #595A5C url(/assets/sort_desc.png) no-repeat center right; }

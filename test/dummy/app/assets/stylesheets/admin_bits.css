@@ -130,3 +130,12 @@ label {
 
 .pull-right {
   float: right; }
+
+.sorting {
+  background: #595A5C url(/assets/sort_both.png) no-repeat center right; }
+
+.sorting_asc {
+  background: #595A5C url(/assets/sort_asc.png) no-repeat center right; }
+
+.sorting_desc {
+  background: #595A5C url(/assets/sort_desc.png) no-repeat center right; }
