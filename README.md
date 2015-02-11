@@ -11,6 +11,7 @@ AdminBits simplifies creation of sortable / searchable lists found in dashboards
 * Source code [available on GitHub](https://github.com/bitmincer/admin_bits)
 * More information, known limitations, and how-tos [available on the wiki](https://github.com/bitmincer/admin_bits/wiki)
 * [live demo](http://demo-admin-bits.herokuapp.com/admin)
+
 ## Getting Help
 
 * Please report bugs on the [issue tracker](https://github.com/bitmincer/admin_bits/issues) but read the "getting help" section in the wiki first.
