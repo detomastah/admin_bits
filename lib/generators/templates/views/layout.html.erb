@@ -10,6 +10,11 @@
     <div class="content">
       <div class="head">
         <h2>AdminBits</h2>
+        <ul class="resources-list">
+          <% all_resources.each do |r| %>
+            <%= resource_nav_link(r) %>
+          <% end %>
+        </ul>
       </div>
       <%= render 'layouts/admin_bits/messages' %>
 

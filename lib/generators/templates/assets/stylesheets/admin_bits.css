@@ -133,9 +133,22 @@ label {
 
 .sorting {
   background: #595A5C url(/assets/admin_bits/sort_both.png) no-repeat center right; }
-
 .sorting_asc {
   background: #595A5C url(/assets/admin_bits/sort_asc.png) no-repeat center right; }
-
 .sorting_desc {
   background: #595A5C url(/assets/admin_bits/sort_desc.png) no-repeat center right; }
+
+ul.resources-list {
+  padding: 0;
+  margin-bottom: 1px;
+  list-style: none;
+  display: table; }
+  ul.resources-list li {
+    display: block;
+    float: left; }
+  ul.resources-list li a {
+    background-color: #a0d3e8;
+    padding: 10px 20px; }
+  ul.resources-list li:hover, ul.resources-list li:hover a{
+    background-color: #61b6d9;
+    color: #FFFFFF; }
