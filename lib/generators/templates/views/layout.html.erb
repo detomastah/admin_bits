@@ -4,11 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdminBits</title>
     <%= stylesheet_link_tag "admin_bits", media: 'all' %>
+    <%= javascript_include_tag "admin_bits" %>
   </head>
   <body>
     <div class="content">
       <div class="head">
         <h2>AdminBits</h2>
+        <ul class="resources-list">
+          <% all_resources.each do |r| %>
+            <%= resource_nav_link(r) %>
+          <% end %>
+        </ul>
       </div>
       <%= render 'layouts/admin_bits/messages' %>
 

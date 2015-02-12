@@ -125,11 +125,29 @@ describe AdminBitsGenerator do
       end
     end
 
-    describe 'stylesheets' do
-      subject { file('app/assets/stylesheets/admin_bits.css') }
+    describe 'assets' do
+      describe 'stylesheets' do
+        subject { file('app/assets/stylesheets/admin_bits.css') }
 
-      it 'exist' do
-        expect(subject).to exist
+        it 'exist' do
+          expect(subject).to exist
+        end
+      end
+
+      describe 'javascripts' do
+        subject { file('app/assets/javascripts/admin_bits.js') }
+
+        it 'exist' do
+          expect(subject).to exist
+        end
+      end
+
+      describe 'images' do
+        it 'exist' do
+          expect(file('app/assets/images/admin_bits/sort_asc.png')).to exist
+          expect(file('app/assets/images/admin_bits/sort_desc.png')).to exist
+          expect(file('app/assets/images/admin_bits/sort_both.png')).to exist
+        end
       end
     end
   end

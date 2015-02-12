@@ -5,7 +5,7 @@
 <table class="admin-table">
   <thead>
     <tr> <% attribute_names.each do |attribute| %>
-      <th>
+      <th class="sorting">
         <%%= admin_link(:by_<%= attribute %>, "<%= attribute %>") %>
       </th> <% end %>
       <th>
@@ -20,8 +20,8 @@
           <%%= obj.<%= attribute%> %>
         </td> <% end %>
         <td>
-          <%%= link_to 'Edit', edit_<%= resource_path %>(obj) %>
-          <%%= button_to 'Delete', <%= resource_path %>(obj), method: :delete, class: 'button alert', data: { confirm: 'Are you sure?' } %>
+          <%%= link_to 'Edit', edit_<%= resource_path %>(obj), class: 'button info controll' %>
+          <%%= button_to 'Delete', <%= resource_path %>(obj), method: :delete, class: 'button alert controll', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <%% end %>

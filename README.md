@@ -10,6 +10,7 @@ AdminBits simplifies creation of sortable / searchable lists found in dashboards
 * RDoc documentation [available on RubyDoc.info](http://rubydoc.info/gems/admin_bits)
 * Source code [available on GitHub](https://github.com/bitmincer/admin_bits)
 * More information, known limitations, and how-tos [available on the wiki](https://github.com/bitmincer/admin_bits/wiki)
+* [live demo](http://demo-admin-bits.herokuapp.com/admin)
 
 ## Getting Help
 
