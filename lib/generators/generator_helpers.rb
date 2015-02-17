@@ -36,7 +36,6 @@ module AdminBits
     end
 
     def all_attributes
-      raw_resource = eval(resource.singularize.camelcase)
       if raw_resource.class == Class
         raw_resource.attribute_names
       else
@@ -44,8 +43,12 @@ module AdminBits
       end
     end
 
+    def raw_resource
+      klass.constantize
+    end
+
     def klass
-      resource.singularize.camelcase
+      options[:class_name] || resource.singularize.camelcase
     end
   end
 end

@@ -27,6 +27,10 @@ class AdminBitsGenerator < Rails::Generators::Base
     :default => true,
     :desc => "Add routing based on resource and namespace",
     :aliases => '-AR'
+  class_option :class_name,
+    :type => :string,
+    :desc => "Name of raw resource class",
+    :aliases => '-CN'
 
   self.source_paths << File.join(File.dirname(__FILE__), 'templates')
 
