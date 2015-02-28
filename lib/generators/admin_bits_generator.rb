@@ -70,6 +70,10 @@ class AdminBitsGenerator < Rails::Generators::Base
     copy_file 'config.rb', 'config/initializers/admin_bits.rb'
   end
 
+  def run_simple_form_generator
+    Rails::Generators.invoke('simple_form:install')
+  end
+
   protected
 
   def add_templates
