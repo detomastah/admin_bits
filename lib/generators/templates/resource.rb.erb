@@ -1,9 +1,9 @@
 class <%= namespace.camelcase %>::<%= resource_name.camelcase %> <%= '<' %> AdminBits::Resource
   filters :sample_filter_method
-  ordering :by_id, default: { by_id: :asc }
+  ordering :by_each_attribute, default: { by_id: :asc }
 
   def resource
-    <%= resource.singularize.camelcase %>
+    <%= klass %>
   end
 
   def path

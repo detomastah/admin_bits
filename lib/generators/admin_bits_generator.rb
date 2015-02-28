@@ -62,9 +62,12 @@ class AdminBitsGenerator < Rails::Generators::Base
 
     unless AdminBits::Extentions.try(:call_generator, params)
       add_templates
-      add_assets_initializer
       add_assets
     end
+  end
+
+  def add_config
+    copy_file 'config.rb', 'config/initializers/admin_bits.rb'
   end
 
   protected
@@ -82,14 +85,5 @@ class AdminBitsGenerator < Rails::Generators::Base
     copy_file 'assets/stylesheets/admin_bits.css', 'app/assets/stylesheets/admin_bits.css'
     copy_file 'assets/javascripts/admin_bits.js', 'app/assets/javascripts/admin_bits.js'
     directory 'assets/images', 'app/assets/images/admin_bits'
-  end
-
-  def add_assets_initializer
-    if (['admin_bits.css', 'admin_bits.js'] -  Rails.application.config.assets.precompile).any?
-      content = 'Rails.application.config.assets.precompile += %w(admin_bits.css admin_bits.js)'
-      path = 'config/initializers/assets.rb'
-
-      File.write(path, content, mode: 'a')
-    end
   end
 end

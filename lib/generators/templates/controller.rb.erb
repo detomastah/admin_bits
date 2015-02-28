@@ -1,4 +1,4 @@
-class <%= namespace.camelcase %>::<%= controller_name.camelcase %> <%= '<' %> Admin::BaseController
+class <%= namespace.camelcase %>::<%= controller_name.camelcase %> <%= '<' %> <%= namespace.camelcase %>::BaseController
 
   def index
     @<%= resource %> = resource.fetch_for_index
