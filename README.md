@@ -18,18 +18,17 @@ AdminBits simplifies creation of sortable & searchable lists found in various da
 
 ## Installation
 
-Install the latest stable release:
-```
-  gem install admin_bits
-```
-
-In Rails, add it to your Gemfile:
+In Rails, for latest stable release add it to your Gemfile:
 
 ```ruby
 gem 'admin_bits'
 ```
 
-Finally, restart the server to apply the changes.
+If you are brave enough to live on the edge, or just want to checkout latest version use:
+
+```ruby
+gem 'admin_bits', git: 'https://github.com/detomastah/admin_bits.git'
+```
 
 ## Getting Started
 The easiest way to get started is to user admin_bits generator.
@@ -37,17 +36,17 @@ The easiest way to get started is to user admin_bits generator.
 Let's assume that you have model `Item`. The following command will create a new `Admin::ItemsController` with initial resource:
 
 ```
-  rails generate admin_bits items
+rails generate admin_bits items
 ```
 
 The resource, layout and assets can be freely modified. If there were no errors, one should be able to see new route `admin/items`.
 
 Some new files should have appeared, like:
 ```
-  app/models/admin/item_resource.rb
-  app/controllers/admin/base_controller.rb
-  app/controllers/admin/items_controller.rb
-  app/views/layouts/admin.html.erb
+app/models/admin/item_resource.rb
+app/controllers/admin/base_controller.rb
+app/controllers/admin/items_controller.rb
+app/views/layouts/admin.html.erb
 ```
 
 If you want to learn more about the generator check its [documentation](https://github.com/wilqq/admin_bits/wiki/Generator).
