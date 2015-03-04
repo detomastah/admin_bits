@@ -3,14 +3,14 @@ AdminBits
 
 [![Build Status](https://travis-ci.org/detomastah/admin_bits.svg)](https://travis-ci.org/detomastah/admin_bits)
 
-AdminBits simplifies creation of sortable / searchable lists found in dashboards / admin panels.
+AdminBits simplifies creation of sortable & searchable lists found in various dashboards (like admin sections, search forms etc).
 
 ## Information
 
 * RDoc documentation [available on RubyDoc.info](http://rubydoc.info/gems/admin_bits)
 * Source code [available on GitHub](https://github.com/bitmincer/admin_bits)
 * More information, known limitations, and how-tos [available on the wiki](https://github.com/bitmincer/admin_bits/wiki)
-* [live demo](http://demo-admin-bits.herokuapp.com/admin)
+* [Live demo](http://demo-admin-bits.herokuapp.com/admin)
 
 ## Getting Help
 
@@ -20,7 +20,7 @@ AdminBits simplifies creation of sortable / searchable lists found in dashboards
 
 Install the latest stable release:
 ```
-  [sudo] gem install admin_bits
+  gem install admin_bits
 ```
 
 In Rails, add it to your Gemfile:
@@ -32,14 +32,19 @@ gem 'admin_bits'
 Finally, restart the server to apply the changes.
 
 ## Getting Started
-We recommend to use admin_bits generator.
+The easiest way to get started is to user admin_bits generator.
+
+Let's assume that you have model `Item`. The following command will create a new `Admin::ItemsController` with initial resource:
+
 ```
-  rails generate admin_bits items [options]
+  rails generate admin_bits items
 ```
 
-this should add route `admin/items` and give you files:
+The resource, layout and assets can be freely modified. If there were no errors, one should be able to see new route `admin/items`.
+
+Some new files should have appeared, like:
 ```
-  lib/admin/item_resource.rb
+  app/models/admin/item_resource.rb
   app/controllers/admin/base_controller.rb
   app/controllers/admin/items_controller.rb
   app/views/layouts/admin.html.erb
@@ -68,12 +73,12 @@ end
 
 ## Credits
 
-admin_bits is maintained and funded by bitmincer. Thank you
+admin_bits is maintained and funded by bitmincer & detomastah. Thank you
 to all the [contributors][contributors].
 
 ## License
 
-admin_bits is copyright © 2013-2014 bitmincer. It is free software,
+admin_bits is copyright © 2013-2015 bitmincer. It is free software,
 and may be redistributed under the terms specified in the
 [LICENSE](LICENSE) file.
 
