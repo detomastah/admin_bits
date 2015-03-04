@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,lib,test,spec}/**/*"] + ["LICENSE", "Rakefile", "Gemfile", "README.md"]
   s.version = "0.4.0"
   s.add_runtime_dependency 'kaminari'
+  s.add_dependency 'simple_form'
   s.date  = '2014-12-19'
   s.email = "lpelszyn@o2.pl"
   s.authors = ["Lukasz Pelszynski"]
