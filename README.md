@@ -1,7 +1,7 @@
 AdminBits
 ==========
 
-[![Build Status](https://travis-ci.org/detomastah/admin_bits.svg)](https://travis-ci.org/bitmincer/admin_bits)
+[![Build Status](https://travis-ci.org/detomastah/admin_bits.svg)](https://travis-ci.org/detomastah/admin_bits)
 
 AdminBits simplifies creation of sortable / searchable lists found in dashboards / admin panels.
 
