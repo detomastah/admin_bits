@@ -11,9 +11,10 @@ module AdminBits
   autoload :Extentions,              'admin_bits/extentions'
   autoload :GeneratorHelpers,        'generators/generator_helpers'
 
-
   def self.included(base)
     base.send :attr_reader, :params
     base.send :include, Rails.application.routes.url_helpers
   end
 end
+
+require 'admin_bits/engine'

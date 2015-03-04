@@ -39,7 +39,7 @@ class AdminBitsGenerator < Rails::Generators::Base
   end
 
   def create_resource
-    template "resource.rb.erb", "lib/#{ namespace }/#{ resource_name }.rb"
+    template "resource.rb.erb", "app/models/#{ namespace }/#{ resource_name }.rb"
   end
 
   def create_base_controller
@@ -62,16 +62,11 @@ class AdminBitsGenerator < Rails::Generators::Base
 
     unless AdminBits::Extentions.try(:call_generator, params)
       add_templates
-      add_assets
     end
   end
 
   def add_config
     copy_file 'config.rb', 'config/initializers/admin_bits.rb'
-  end
-
-  def run_simple_form_generator
-    Rails::Generators.invoke('simple_form:install')
   end
 
   protected
@@ -80,14 +75,13 @@ class AdminBitsGenerator < Rails::Generators::Base
     copy_file 'views/layout.html.erb', 'app/views/layouts/admin_bits/layout.html.erb'
     copy_file 'views/messages.html.erb', 'app/views/layouts/admin_bits/_messages.html.erb'
     template 'views/index.html.erb', "app/views/#{namespace}/#{resource}/index.html.erb"
-    template 'views/new.html.erb', "app/views/#{namespace}/#{resource}/new.html.erb"
-    template 'views/edit.html.erb', "app/views/#{namespace}/#{resource}/edit.html.erb"
-    template 'views/form.html.erb', "app/views/#{namespace}/#{resource}/_form.html.erb"
+    # template 'views/new.html.erb', "app/views/#{namespace}/#{resource}/new.html.erb"
+    # template 'views/edit.html.erb', "app/views/#{namespace}/#{resource}/edit.html.erb"
+    # template 'views/form.html.erb', "app/views/#{namespace}/#{resource}/_form.html.erb"
   end
 
   def add_assets
-    copy_file 'assets/stylesheets/admin_bits.css', 'app/assets/stylesheets/admin_bits.css'
-    copy_file 'assets/javascripts/admin_bits.js', 'app/assets/javascripts/admin_bits.js'
-    directory 'assets/images', 'app/assets/images/admin_bits'
+    copy_file 'assets/stylesheets/admin.css', 'app/assets/stylesheets/admin.css'
+    copy_file 'assets/javascripts/admin.js', 'app/assets/javascripts/admin.js'
   end
 end

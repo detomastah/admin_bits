@@ -7,11 +7,12 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,lib,test,spec}/**/*"] + ["LICENSE", "Rakefile", "Gemfile", "README.md"]
   s.version = "0.4.0"
   s.add_runtime_dependency 'kaminari'
-  s.add_dependency 'simple_form'
+  s.add_dependency 'railties', "~>4.0"
   s.date  = '2014-12-19'
   s.email = "lpelszyn@o2.pl"
   s.authors = ["Lukasz Pelszynski"]
   s.homepage = "https://github.com/bitmincer/admin_bits"
   s.add_development_dependency 'rake'
   s.add_development_dependency "rspec"
+  s.require_path = 'lib'
 end
