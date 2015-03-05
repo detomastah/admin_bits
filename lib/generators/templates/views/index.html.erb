@@ -17,7 +17,7 @@
     <%% @<%= resource %>.each do |obj| %>
       <tr> <% attribute_names.each do |attribute| %>
         <td>
-          <%%= obj.<%= attribute%> \%>
+          <%%= obj.<%= attribute%> %>
         </td><% end %>
         <td>
           <%%= link_to 'Edit', edit_<%= resource_path %>(obj), class: 'button info controll' %>

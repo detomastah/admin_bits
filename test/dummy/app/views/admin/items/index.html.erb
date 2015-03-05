@@ -32,22 +32,22 @@
     <% @items.each do |obj| %>
       <tr> 
         <td>
-          <%= obj.id \%>
+          <%= obj.id %>
         </td>
         <td>
-          <%= obj.name \%>
+          <%= obj.name %>
         </td>
         <td>
-          <%= obj.price \%>
+          <%= obj.price %>
         </td>
         <td>
-          <%= obj.description \%>
+          <%= obj.description %>
         </td>
         <td>
-          <%= obj.created_at \%>
+          <%= obj.created_at %>
         </td>
         <td>
-          <%= obj.updated_at \%>
+          <%= obj.updated_at %>
         </td>
         <td>
           <%= link_to 'Edit', edit_admin_item_path(obj), class: 'button info controll' %>
