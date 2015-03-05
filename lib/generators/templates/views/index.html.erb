@@ -20,7 +20,7 @@
           <%%= obj.<%= attribute%> %>
         </td><% end %>
         <td>
-          <%%= link_to 'Edit', edit_<%= resource_path %>(obj), class: 'button info controll' %>
+          <%%= link_to 'Edit', edit_<%= resource_path %>(obj), class: 'button info controll edit' %>
           <%%= button_to 'Delete', <%= resource_path %>(obj), method: :delete, class: 'button alert controll', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
