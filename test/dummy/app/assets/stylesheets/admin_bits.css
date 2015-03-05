@@ -109,12 +109,17 @@ a {
     button.new-item:hover, button.new-item:focus, .button.new-item:hover, .button.new-item:focus {
       color: #FFFFFF; }
   .button#submit {
+    display: block;
     margin: 15px 0;
   }
 
 label {
   display: block;
   width: 100px; }
+
+input {
+  border: 1px solid #bbb;
+  margin-bottom: 15px; }
 
 .flash {
   margin: 10px 0;
