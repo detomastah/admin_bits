@@ -7,7 +7,7 @@
     <tr> <% attribute_names.each do |attribute| %>
       <th class="sorting">
         <%%= admin_link(:by_<%= attribute %>, "<%= attribute %>") %>
-      </th> <% end %>
+      </th><% end %>
       <th>
         Actions
       </th>
@@ -18,9 +18,9 @@
       <tr> <% attribute_names.each do |attribute| %>
         <td>
           <%%= obj.<%= attribute%> %>
-        </td> <% end %>
+        </td><% end %>
         <td>
-          <%%= link_to 'Edit', edit_<%= resource_path %>(obj), class: 'button info controll' %>
+          <%%= link_to 'Edit', edit_<%= resource_path %>(obj), class: 'button info controll edit' %>
           <%%= button_to 'Delete', <%= resource_path %>(obj), method: :delete, class: 'button alert controll', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>

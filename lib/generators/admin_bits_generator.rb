@@ -75,9 +75,9 @@ class AdminBitsGenerator < Rails::Generators::Base
     copy_file 'views/layout.html.erb', 'app/views/layouts/admin_bits/layout.html.erb'
     copy_file 'views/messages.html.erb', 'app/views/layouts/admin_bits/_messages.html.erb'
     template 'views/index.html.erb', "app/views/#{namespace}/#{resource}/index.html.erb"
-    # template 'views/new.html.erb', "app/views/#{namespace}/#{resource}/new.html.erb"
-    # template 'views/edit.html.erb', "app/views/#{namespace}/#{resource}/edit.html.erb"
-    # template 'views/form.html.erb', "app/views/#{namespace}/#{resource}/_form.html.erb"
+    template 'views/new.html.erb', "app/views/#{namespace}/#{resource}/new.html.erb"
+    template 'views/edit.html.erb', "app/views/#{namespace}/#{resource}/edit.html.erb"
+    template 'views/form.html.erb', "app/views/#{namespace}/#{resource}/_form.html.erb"
   end
 
   def add_assets

@@ -50,8 +50,8 @@
           <%= obj.updated_at %>
         </td>
         <td>
-          <%= link_to 'Edit', edit_admin_item_path(obj) %>
-          <%= button_to 'Delete', admin_item_path(obj), method: :delete, class: 'button alert', data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_admin_item_path(obj), class: 'button info controll edit' %>
+          <%= button_to 'Delete', admin_item_path(obj), method: :delete, class: 'button alert controll', data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>

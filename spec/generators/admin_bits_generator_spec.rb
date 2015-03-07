@@ -116,11 +116,14 @@ describe AdminBitsGenerator do
         end
 
         it 'has proper content' do
-          expect(subject).to contain '<%= simple_form_for [:admin, @item] do |f| %> '
-          expect(subject).to contain '<%= f.input :name %>'
-          expect(subject).to contain '<%= f.input :price %>'
-          expect(subject).to contain '<%= f.input :description %>'
-          expect(subject).to contain "<%= f.button :submit, class: 'button success', id: 'submit' %>"
+          expect(subject).to contain '<%= f.label :name %>'
+          expect(subject).to contain '<%= f.label :price %>'
+          expect(subject).to contain '<%= f.label :description %>'
+
+          expect(subject).to contain '<%= f.text_field :name %>'
+          expect(subject).to contain '<%= f.text_field :price %>'
+          expect(subject).to contain '<%= f.text_field :description %>'
+          expect(subject).to contain "<%= f.submit class: 'button success', id: 'submit' %>"
         end
       end
     end

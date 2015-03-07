@@ -82,6 +82,9 @@ a {
   font-size: 1rem;
   transition: background-color 300ms ease-out; }
 
+  .button.controll {
+    width: 80%; }
+
   .button.alert {
     background-color: #f04124;
     border-color: #cf2a0e;
@@ -100,21 +103,26 @@ a {
     button.success:hover, button.success:focus, .button.success:hover, .button.success:focus {
       color: #FFFFFF; }
   .button.new-item {
-    margin: 10px 20px;
+    margin: 10px 20px; }
+  .button.new-item, .button.edit {
     background-color: #a0d3e8;
     border-color: #61b6d9;
     color: #333333; }
-    button.new-item:hover, button.new-item:focus, .button.new-item:hover, .button.new-item:focus {
-      background-color: #61b6d9; }
-    button.new-item:hover, button.new-item:focus, .button.new-item:hover, .button.new-item:focus {
+    .button.new-item:hover, .button.new-item:focus, .button.edit:hover, .button.edit:focus {
+      background-color: #61b6d9;
       color: #FFFFFF; }
   .button#submit {
+    display: block;
     margin: 15px 0;
   }
 
 label {
   display: block;
   width: 100px; }
+
+input {
+  border: 1px solid #bbb;
+  margin-bottom: 15px; }
 
 .flash {
   margin: 10px 0;
