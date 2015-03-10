@@ -1,8 +1,5 @@
 ![alt tag](https://raw.github.com/detomastah/admin_bits/master/docs/ablogo.png)
 
-AdminBits
-==========
-
 [![Build Status](https://travis-ci.org/detomastah/admin_bits.svg)](https://travis-ci.org/detomastah/admin_bits)
 
 AdminBits simplifies creation of sortable & searchable lists found in various dashboards (like admin sections, search forms etc).
