@@ -1,3 +1,5 @@
+![alt tag](https://raw.github.com/detomastah/admin_bits/master/docs/ablogo.png)
+
 AdminBits
 ==========
 
