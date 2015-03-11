@@ -59,7 +59,5 @@ ordering :plain
 ### Pagination
 You can paginate your resources. To do this you have to pass page number in `params[:page]` You can customize "per_page" value in Resource class
 ```ruby
-def per_page
-  30
-end
+per_page 30
 ```
