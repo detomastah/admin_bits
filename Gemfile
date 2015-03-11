@@ -3,7 +3,7 @@ source "http://rubygems.org"
 gem "rails", ">= 4.0.0"
 gem "capybara", ">= 0.4.0"
 gem "sqlite3"
-gem "kaminari"
+gem "kaminari", require: 'kaminari'
 gem "jquery-rails"
 # gem 'admin_bits', path: '/home/mateusz/projekty/admin_bits'
 # gem 'admin_bits_lte', path: '/home/mateusz/projekty/admin_bits_bootstrap'
