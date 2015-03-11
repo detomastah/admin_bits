@@ -1,3 +1,5 @@
+## Resource class
+
 ### Basic overview
 
 This class will contain settings associated with the particular resource.

@@ -1,3 +1,5 @@
+## Generator
+
 	rails generate admin_bits resources [options]
 
 

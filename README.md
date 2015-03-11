@@ -48,9 +48,9 @@ app/controllers/admin/items_controller.rb
 app/views/layouts/admin.html.erb
 ```
 
-If you want to learn more about the generator check its [documentation](https://github.com/wilqq/admin_bits/wiki/Generator).
+If you want to learn more about the generator check its [documentation](https://github.com/detomastah/admin_bits/blob/master/docs/generator.md).
 
-Check out your `item_resource` class for some hints on how you can customize your Resource. This class contain settings associated with the items resource. You can also check [documentation](https://github.com/wilqq/admin_bits/wiki/Resource-class) for more information.
+Check out your `item_resource` class for some hints on how you can customize your Resource. This class contain settings associated with the items resource. You can also check [documentation](https://github.com/detomastah/admin_bits/blob/master/docs/resource_class.md) for more information.
 
 You will find `resource` private method in resource items_controller.
 
