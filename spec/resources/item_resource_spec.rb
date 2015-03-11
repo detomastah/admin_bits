@@ -96,6 +96,36 @@ describe Admin::ItemResource do
         end
       end
     end
+
+    describe 'pagination' do
+      before do
+        described_class.send :per_page, 3
+
+        (4..7).each do |i|
+          create(:item, name: "item #{i}")
+        end
+      end
+
+      describe 'without page param' do
+        let(:params) {{ 'order' => 'by_id', 'asc' => 'true' }}
+
+        it 'returns first 3 items' do
+          items = subject.fetch_for_index
+          expect(items.count).to eq 3
+          expect(items.map(&:name)).to eq ['item 1', 'item 2', 'item 3']
+        end
+      end
+
+      describe 'with page param' do
+        let(:params) {{ 'page' => '2', 'order' => 'by_id', 'asc' => 'true' }}
+
+        it 'returns second 3 items' do
+          items = subject.fetch_for_index
+          expect(items.count).to eq 3
+          expect(items.map(&:name)).to eq ['item 4', 'item 5', 'item 6']
+        end
+      end
+    end
   end
 end
 
