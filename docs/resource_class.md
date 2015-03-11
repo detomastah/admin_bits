@@ -8,7 +8,6 @@ Resource class must contain `resource` method which return ActiveRecord resource
 Example for Item resource.
 ```ruby
 class Admin::ProductsResource < AdminBits::Resource
-
   def resource
     Item
   end
@@ -22,7 +21,6 @@ end
 To use this class in your controller you have to create new instance of it and pass params as argument. Then you can use `fetch_for_index` method. It will fetch all elements that satisfies the conditions passed in params.
 ```ruby
 class Admin::ProductsController < Admin::BaseController
-
   def index
     @item_resource = Admin::ProductsResource.new(params)
     @items = @item_resource.fetch_for_index
@@ -36,7 +34,6 @@ You can use filters by execute `filters` class method in your Resource class and
 In this example we assume that you have `having_name` method in your model.
 ```ruby
 class Admin::ProductsResource < AdminBits::Resource
-
   filters :having_name
 
   def having_name(resource)
@@ -54,7 +51,6 @@ You can determine default order in last parameter to `ordering` class method.
 
 ```ruby
 class Admin::ProductsResource < AdminBits::Resource
-
   ordering :by_name, default: { by_price: :asc }
 
   def by_name(resource, direction = :asc)
@@ -66,7 +62,6 @@ end
  If your resource inherits form ActiveRecord you can use `by_each_attribute` ordering option. This option will generate by_attribute_name sorting method for each attribute of resource, you can use those methods like other self-defined ordering methods. You can also overwrite some of them.
 ```ruby
 class Admin::ProductsResource < AdminBits::Resource
-
   ordering :by_each_attribute
 end
 ```
@@ -74,7 +69,6 @@ end
 If your resource is Array you can use `plain` ordering option. This allows you to use `plain` ordering method like other ordering methods. If your resource is Array this method will sort your Array. If you pass `:desc` as second argument your resource will be sort descending.
 ```ruby
 class Admin::ProductsResource < AdminBits::Resource
-
   ordering :plain
 end
 ```
@@ -82,7 +76,6 @@ end
 You can paginate your resources. To do this you have to pass page number in `params[:page]` You can customize "per_page" value in Resource class
 ```ruby
 class Admin::ProductsResource < AdminBits::Resource
-
   per_page 30
 end
 ```
