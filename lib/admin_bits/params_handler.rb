@@ -50,9 +50,13 @@ module AdminBits
     end
 
     def output
-      return filtered_resource unless request_params[:order]
-      # Paginator.new(filtered_resource.order(get_order), get_page).call
-      options.send(get_order, filtered_resource, get_direction) #.page(get_page)
+      if request_params[:order]
+        output = options.send(get_order, filtered_resource, get_direction)
+      else
+        output = filtered_resource
+      end
+
+      options.paginate(output, get_page)
     end
 
     def original_url

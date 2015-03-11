@@ -1,6 +1,7 @@
 class Admin::ItemResource < AdminBits::Resource
   filters :having_name
   ordering :by_each_attribute, default: { by_price: :asc }
+  per_page 4
 
   def resource
     Item
