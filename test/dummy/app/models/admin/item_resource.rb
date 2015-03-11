@@ -1,6 +1,6 @@
 class Admin::ItemResource < AdminBits::Resource
-  filters :sample_filter_method
-  ordering :by_each_attribute, default: { by_id: :asc }
+  filters :having_name
+  ordering :by_each_attribute, default: { by_price: :asc }
 
   def resource
     Item
@@ -11,8 +11,8 @@ class Admin::ItemResource < AdminBits::Resource
     admin_items_path
   end
 
-  def sample_filter_method(resource)
-    resource
+  def having_name(resource)
+    resource.having_name(filter_params[:having_name])
   end
 
   def by_id(resource, direction = :asc)
