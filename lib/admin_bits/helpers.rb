@@ -46,7 +46,7 @@ module AdminBits
     end
 
     def all_resources
-      AdminBits::Resource.subclasses
+      AdminBits::Resource.subclasses.map(&:to_s).uniq.map(&:constantize)
     end
 
     def resource_nav_link(r)

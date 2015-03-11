@@ -126,6 +126,40 @@ describe AdminBitsGenerator do
           expect(subject).to contain "<%= f.submit class: 'button success', id: 'submit' %>"
         end
       end
+
+      describe 'new' do
+        subject { file('app/views/admin/items/new.html.erb') }
+
+        it 'exist' do
+          expect(subject).to exist
+        end
+
+        it 'has correct syntax' do
+          expect(subject).to have_correct_syntax
+        end
+
+        it 'has proper content' do
+          expect(subject).to contain '<h2>New Item</h2>'
+          expect(subject).to contain "<%= render 'form' %>"
+        end
+      end
+
+      describe 'edit' do
+        subject { file('app/views/admin/items/edit.html.erb') }
+
+        it 'exist' do
+          expect(subject).to exist
+        end
+
+        it 'has correct syntax' do
+          expect(subject).to have_correct_syntax
+        end
+
+        it 'has proper content' do
+          expect(subject).to contain '<h2>Edit Item</h2>'
+          expect(subject).to contain "<%= render 'form' %>"
+        end
+      end
     end
   end
 
@@ -158,6 +192,8 @@ describe AdminBitsGenerator do
     it "doesn't create view files" do
       expect(file('app/views/admin/items/index.html.erb')).to_not exist
       expect(file('app/views/admin/items/_form.html.erb')).to_not exist
+      expect(file('app/views/admin/items/new.html.erb')).to_not exist
+      expect(file('app/views/admin/items/edit.html.erb')).to_not exist
       expect(file('app/assets/stylesheets/admin_bits.css')).to_not exist
     end
   end
