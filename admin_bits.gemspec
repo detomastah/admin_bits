@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "AdminBits simplifies creation of sortable / searchable lists found in dashboards / admin panels"
   s.files = Dir["{app,lib,test,spec}/**/*"] + ["LICENSE", "Rakefile", "Gemfile", "README.md"]
   s.version = "0.4.0"
-  s.add_runtime_dependency 'kaminari'
+  s.add_dependency 'kaminari', '~> 0.16.1'
   s.add_dependency 'railties', "~>4.0"
   s.date  = '2014-12-19'
   s.email = "lpelszyn@o2.pl"

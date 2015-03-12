@@ -101,6 +101,7 @@ describe AdminBitsGenerator do
         it 'has proper content' do
           expect(subject).to contain '<% @items.each do |obj| %>'
           expect(subject).to contain '<%= admin_link(:by_name, "name") %>'
+          expect(subject).to contain '<%= paginate @items %>'
         end
       end
 

@@ -28,8 +28,10 @@ module AdminBits
     def include_sorting_class
       if resource_class.ancestors.include? ActiveRecord::Base
         self.class.send :include, ActiveRecordSort
+        self.class.send :include, ActiveRecordPaginator
       else
         self.class.send :include, PlainSort
+        self.class.send :include, PlainPaginator
       end
     end
 
@@ -58,6 +60,14 @@ module AdminBits
             @default_order = arg[:default].first
           end
         end
+      end
+
+      def per_page(per_page_amount)
+        @per_page_amount = per_page_amount
+      end
+
+      def per_page_amount
+        @per_page_amount
       end
 
       def filter_methods

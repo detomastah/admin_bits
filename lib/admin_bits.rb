@@ -7,6 +7,8 @@ module AdminBits
   autoload :PathHandler,             'admin_bits/params_handler/path_handler'
   autoload :ActiveRecordSort,        'admin_bits/sorting/active_record_sort'
   autoload :PlainSort,               'admin_bits/sorting/plain_sort'
+  autoload :ActiveRecordPaginator,   'admin_bits/pagination/active_record_paginator'
+  autoload :PlainPaginator,          'admin_bits/pagination/plain_paginator'
   autoload :Controller,              'admin_bits/controller'
   autoload :Extentions,              'admin_bits/extentions'
   autoload :GeneratorHelpers,        'generators/generator_helpers'

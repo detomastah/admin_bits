@@ -63,6 +63,14 @@ describe Admin::RawResource do
         end
       end
     end
+
+    describe 'with page params' do
+      let(:params) {{ 'page' => '2' }}
+
+      it 'temporary returns raw resource' do
+        expect(subject.fetch_for_index).to eq subject.resource
+      end
+    end
   end
 end
 
